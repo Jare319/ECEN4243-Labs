@@ -1,0 +1,71 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.1 2021.01, Jan 19 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/ecen4243S23-main/lab0
+T_opt
+!s110 1674259661
+Vlm0GIVBkO;<GOa1Blgg[P2
+04 8 4 work stimulus fast 0
+=1-d83bbf62bb5f-63cb2ccd-125-2934
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.1;73
+vFSM
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1674259660
+!i10b 1
+!s100 ;9UlQO`CZ6V49mWLXegBc0
+IKe2XOFzb5ZN:LTcXS[dna2
+S1
+R0
+w1674259329
+8FSM.sv
+FFSM.sv
+!i122 0
+L0 1 41
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+Z5 OL;L;2021.1;73
+r1
+!s85 0
+31
+Z6 !s108 1674259660.000000
+Z7 !s107 FSM_tb.sv|FSM.sv|
+Z8 !s90 -reportprogress|300|FSM.sv|FSM_tb.sv|
+!i113 0
+Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@f@s@m
+vstimulus
+R2
+R3
+!i10b 1
+!s100 E<4K`Q8OWA>ak`>UN<4YW0
+If;:?bTXZWe81>n`Pg8OX^3
+S1
+R0
+w1674259635
+8FSM_tb.sv
+FFSM_tb.sv
+!i122 0
+L0 1 46
+R4
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 0
+R9
+R1
