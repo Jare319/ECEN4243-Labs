@@ -3,8 +3,6 @@ module stimulus ();
      logic clock, wenable;
      logic [4:0] raddr1, raddr2, waddr;
      logic [31:0] wdata, rdata1, rdata2;
-     integer desc3;
-     integer handle3;
    
    // Instantiate DUT
    regfile r (clock, wenable, raddr1, raddr2, waddr, wdata, rdata1, rdata2);
@@ -22,14 +20,7 @@ module stimulus ();
 	handle3 = $fopen("regfile_test.out");
 	// Tells when to finish simulation
 	#500 $finish;		
-     end
-
-   always 
-     begin
-	desc3 = handle3;
-	#5 $fdisplay(desc3, "%b %b || %b", 
-		     reset_b, In, Out);
-     end   
+     end 
    
    initial 
      begin      
