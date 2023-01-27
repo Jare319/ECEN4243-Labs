@@ -22,9 +22,9 @@ module regfile (input logic clock,
 
    always @(posedge clock) begin
       if (wenable && waddr != 'b00000)
-         rf[waddr] = wdata
-      rdata1 = rf[raddr1]
-      rdata2 = rf[raddr2]
+         rf[waddr] = wdata;
+      rdata1 = rf[raddr1];
+      rdata2 = rf[raddr2];
    end
          
 endmodule // regfile

@@ -11,23 +11,32 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
-# do FSM.do
+# do regfile.do
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jarre@MSI.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
 # Model Technology ModelSim SE-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
-# Start time: 18:07:40 on Jan 20,2023
-# vlog -reportprogress 300 FSM.sv FSM_tb.sv 
-# -- Compiling module FSM
+# Start time: 17:09:31 on Jan 27,2023
+# vlog -reportprogress 300 regfile.sv regfile_tb.sv 
+# -- Compiling module regfile
 # -- Compiling module stimulus
 # 
 # Top level modules:
 # 	stimulus
-# End time: 18:07:40 on Jan 20,2023, Elapsed time: 0:00:00
+# End time: 17:09:31 on Jan 27,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" work.stimulus 
-# Start time: 18:07:41 on Jan 20,2023
+# Start time: 17:09:31 on Jan 27,2023
 # ** Note: (vsim-3812) Design is being optimized...
-# ** Note: (vopt-143) Recognized 1 FSM in module "FSM(fast)".
-# Loading sv_std.std
-# Loading work.stimulus(fast)
-# Loading work.FSM(fast)
-# .main_pane.list.interior.cs.body
-# .main_pane.wave.interior.cs.body.pw.wf
+# ** Error (suppressible): regfile_tb.sv(31): (vopt-7063) Failed to find 'reset_b' in hierarchical name 'reset_b'.
+#         Region: stimulus
+# ** Error (suppressible): regfile_tb.sv(31): (vopt-7063) Failed to find 'In' in hierarchical name 'In'.
+#         Region: stimulus
+# ** Error (suppressible): regfile_tb.sv(31): (vopt-7063) Failed to find 'Out' in hierarchical name 'Out'.
+#         Region: stimulus
+# Optimization failed
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=3, Warnings=0.
+# Error loading design
+# Error: Error loading design
+#        Pausing macro execution
+# MACRO ./regfile.do PAUSED at line 33
