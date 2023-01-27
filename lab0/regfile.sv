@@ -1,8 +1,17 @@
-module regfile (input logic         clk, 
-		input logic 	    we3, 
-		input logic [4:0]   ra1, ra2, wa3, 
-		input logic [31:0]  wd3, 
-		output logic [31:0] rd1, rd2);
+// 32-bit register with 2 5-bit read address ports and a 5-bit write address port
+// Port names will be adjusted for easier reading, see reference below. 
+// Ports are prefaced with a 'r' or 'w' for 'read' or 'write' respectively, followed by function.
+// wenable - write enable
+// raddr1/2 - read address 1/2
+// waddr - write address
+// wdata - write data
+// rdata1/2 - read data 1/2
+
+module regfile (input logic clock, 
+		input logic wenable, 
+		input logic [4:0] raddr1, raddr2, waddr, 
+		input logic [31:0] wdata, 
+		output logic [31:0] rdata1, rdata2);
    
    logic [31:0] 		    rf[31:0];
    
@@ -10,6 +19,12 @@ module regfile (input logic         clk,
    // read two ports combinationally
    // write third port on rising edge of clock
    // register 0 hardwired to 0
-   
-   
+
+   always @(posedge clock) begin
+      if (wenable && waddr != 'b00000)
+         rf[waddr] = wdata
+      rdata1 = rf[raddr1]
+      rdata2 = rf[raddr2]
+   end
+         
 endmodule // regfile
