@@ -275,9 +275,10 @@ void get_command(FILE * dumpsim_file) {
 
   case 'M':
   case 'm':
-    if (scanf("%i %i", &start, &stop) != 2)
+    if (scanf("%i %i", &start, &stop) != 2) {
       break;
-
+    }
+      
     mdump(dumpsim_file, start, stop);
     break;
 

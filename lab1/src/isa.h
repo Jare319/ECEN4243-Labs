@@ -22,15 +22,6 @@
 //
 #define SIGNEXT(v, sb) ((v) | (((v) & (1 << (sb))) ? ~((1 << (sb))-1) : 0))
 
-int ADD (int Rd, int Rs1, int Rs2, int Funct3) {
-
-  int cur = 0;
-  cur = CURRENT_STATE.REGS[Rs1] + CURRENT_STATE.REGS[Rs2];
-  NEXT_STATE.REGS[Rd] = cur;
-  return 0;
-
-}
-
 int ADDI (int Rd, int Rs1, int Imm, int Funct3) {
 
   int cur = 0;
@@ -75,14 +66,42 @@ int SH (char* i_);
 int SW (char* i_);
 
 // R instruction
-int SUB (char* i_);
-int SLL (char* i_);
-int SLT (char* i_);
+int ADD (int Rd, int Rs1, int Rs2, int Funct3) {
+  int cur = 0;
+  cur = CURRENT_STATE.REGS[Rs1] + CURRENT_STATE.REGS[Rs2];
+  NEXT_STATE.REGS[Rd] = cur;
+  return 0;
+}
+
+int SUB (int Rd, int Rs1, int Rs2, int Funct3) {
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] - CURRENT_STATE.REGS[Rs2];
+  return 0;
+}
+
+int SLL (int Rd, int Rs1, int Rs2, int Funct3) {
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1]<<CURRENT_STATE.REGS[Rs2];
+  return 0;
+}
+
+int SLT (int Rd, int Rs1, int Rs2, int Funct3) {
+  if (CURRENT_STATE.REGS[Rs1] < CURRENT_STATE.REGS[Rs2]) {
+    NEXT_STATE.REGS[Rd] = 1;
+  } else {
+    NEXT_STATE.REGS[Rd] = 0;
+  }
+  return 0;
+}
+
 int SLTU (char* i_);
+
 int XOR (char* i_);
+
 int SRL (char* i_);
+
 int SRA (char* i_);
+
 int OR (char* i_);
+
 int AND (char* i_);
 
 // B instructions

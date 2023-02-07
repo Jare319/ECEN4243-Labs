@@ -87,20 +87,74 @@ int r_process(char* i_) {
   printf("\n");
 
   /* Example - use and replicate */
-  if(!strcmp(d_opcode,"0110011")) {
-    printf("--- This is an ADD instruction. \n");
-    ADD(Rd, Rs1, Rs2, Funct3);
-    return 0;
-  }
-  
+  // if(!strcmp(d_opcode,"0110011")) {
+  //   printf("--- This is an XXX instruction. \n");
+  //   ADD(Rd, Rs1, Rs2, Funct3);
+  //   return 0;
+  // }
+
   /* ADD */
-  if(!strcmp(d_opcode,"0110011")) {
+  if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"000")) {
     printf("--- This is an ADD instruction. \n");
     ADD(Rd, Rs1, Rs2, Funct3);
     return 0;
   }
 
-  /* Add other data instructions here */ 
+  // This needs to also check funct7 to work, which will need to be added above
+
+  // if(!strcmp(d_opcode,"0110011") && !strcmp(Funct3,"000")) {
+  //   printf("--- This is a SUB instruction. \n");
+  //   SUB(Rd, Rs1, Rs2, Funct3);
+  //   return 0;
+  // }
+
+  if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"001")) {
+    printf("--- This is a SLL instruction. \n");
+    SLL(Rd, Rs1, Rs2, Funct3);
+    return 0;
+  }
+
+  if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"010")) {
+    printf("--- This is a SLT instruction. \n");
+    SLT(Rd, Rs1, Rs2, Funct3);
+    return 0;
+  }
+
+  // if(!strcmp(d_opcode,"0110011")) {
+  //   printf("--- This is a SLTU instruction. \n");
+  //   SLTU(Rd, Rs1, Rs2, Funct3);
+  //   return 0;
+  // }
+
+  // if(!strcmp(d_opcode,"0110011")) {
+  //   printf("--- This is a XOR instruction. \n");
+  //   XOR(Rd, Rs1, Rs2, Funct3);
+  //   return 0;
+  // }
+
+  // if(!strcmp(d_opcode,"0110011")) {
+  //   printf("--- This is a SRL instruction. \n");
+  //   SRL(Rd, Rs1, Rs2, Funct3);
+  //   return 0;
+  // }
+
+  // if(!strcmp(d_opcode,"0110011")) {
+  //   printf("--- This is a SRA instruction. \n");
+  //   SRA(Rd, Rs1, Rs2, Funct3);
+  //   return 0;
+  // }
+
+  // if(!strcmp(d_opcode,"0110011")) {
+  //   printf("--- This is a OR instruction. \n");
+  //   OR(Rd, Rs1, Rs2, Funct3);
+  //   return 0;
+  // }
+
+  // if(!strcmp(d_opcode,"0110011")) {
+  //   printf("--- This is a AND instruction. \n");
+  //   AND(Rd, Rs1, Rs2, Funct3);
+  //   return 0;
+  // }
 
   return 1;	
 }
