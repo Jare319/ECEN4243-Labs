@@ -92,6 +92,13 @@ int r_process(char* i_) {
     ADD(Rd, Rs1, Rs2, Funct3);
     return 0;
   }
+  
+  /* ADD */
+  if(!strcmp(d_opcode,"0110011")) {
+    printf("--- This is an ADD instruction. \n");
+    ADD(Rd, Rs1, Rs2, Funct3);
+    return 0;
+  }
 
   /* Add other data instructions here */ 
 
