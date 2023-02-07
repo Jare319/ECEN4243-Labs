@@ -349,6 +349,36 @@ int b_process(char* i_) {
     return 0;
   }	    
 
+  //if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"000")) {
+  //  printf("--- This is an BEQ instruction. \n");
+  //  BEQ(Rs1, Rs2, Imm, Funct3);
+  //  return 0;
+  //}	  
+
+  //if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"100")) {
+  //  printf("--- This is an BLT instruction. \n");
+  //  BLT(Rs1, Rs2, Imm, Funct3);
+  //  return 0;
+  //}	  
+
+  //if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"101")) {
+  //  printf("--- This is an BGE instruction. \n");
+  //  BGE(Rs1, Rs2, Imm, Funct3);
+  //  return 0;
+  //}	  
+
+  //if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"110")) {
+  //  printf("--- This is an BLTU instruction. \n");
+  //  BLTU(Rs1, Rs2, Imm, Funct3);
+  //  return 0;
+  //}	  
+
+  //if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"111")) {
+  //  printf("--- This is an BGEU instruction. \n");
+  //  BGEU(Rs1, Rs2, Imm, Funct3);
+  //  return 0;
+  //}	  
+
   return 1;
 
 }
