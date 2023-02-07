@@ -10,3 +10,42 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [ ] implement the bit sting decoder for the `s`, `j`, and `u` processes in `sim.c`
 - [ ] implement and test each operation in `isa.h`
 
+## Instruction List
+- [X] ADD 
+- [X] ADDI 
+- [ ] AND
+- [ ] ANDI
+- [ ] AUIPC
+- [ ] BEQ
+- [ ] BGE
+- [ ] BGEU
+- [ ] BLT
+- [ ] BLTU
+- [X] BNE
+- [ ] JAL
+- [ ] JALR
+- [ ] LB
+- [ ] LBU
+- [ ] LH
+- [ ] LHU
+- [ ] LUI
+- [ ] LW
+- [ ] OR
+- [ ] ORI
+- [ ] SB
+- [ ] SH
+- [X] SLL
+- [ ] SLLI
+- [X] SLT
+- [ ] SLTI
+- [ ] SLTIU
+- [ ] SLTU
+- [ ] SRA
+- [ ] SRAI
+- [ ] SRL
+- [ ] SRLI
+- [ ] SUB
+- [ ] SW
+- [ ] XOR
+- [ ] XORI
+- [ ] ECALL
