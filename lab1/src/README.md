@@ -21,7 +21,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [ ] BGEU
 - [ ] BLT
 - [ ] BLTU
-- [X] BNE
+- [ ] BNE
 - [ ] JAL
 - [ ] JALR
 - [ ] LB
@@ -44,7 +44,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [ ] SRAI
 - [ ] SRL
 - [ ] SRLI
-- [ ] SUB
+- [X] SUB
 - [ ] SW
 - [ ] XOR
 - [ ] XORI

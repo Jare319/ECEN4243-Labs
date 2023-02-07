@@ -22,26 +22,14 @@
 //
 #define SIGNEXT(v, sb) ((v) | (((v) & (1 << (sb))) ? ~((1 << (sb))-1) : 0))
 
+// I Instructions
 int ADDI (int Rd, int Rs1, int Imm, int Funct3) {
-
   int cur = 0;
   cur = CURRENT_STATE.REGS[Rs1] + SIGNEXT(Imm,12);
   NEXT_STATE.REGS[Rd] = cur;
   return 0;
-
 }
 
-int BNE (int Rs1, int Rs2, int Imm, int Funct3) {
-
-  int cur = 0;
-  Imm = Imm << 1;
-  if (CURRENT_STATE.REGS[Rs1] != CURRENT_STATE.REGS[Rs2])
-    NEXT_STATE.PC = (CURRENT_STATE.PC + 4) + (SIGNEXT(Imm,13));
-  return 0;
-
-}
-
-// I Instructions
 int LB (char* i_);
 int LH (char* i_);
 int LW (char* i_);
@@ -67,9 +55,7 @@ int SW (char* i_);
 
 // R instruction
 int ADD (int Rd, int Rs1, int Rs2, int Funct3) {
-  int cur = 0;
-  cur = CURRENT_STATE.REGS[Rs1] + CURRENT_STATE.REGS[Rs2];
-  NEXT_STATE.REGS[Rd] = cur;
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] + CURRENT_STATE.REGS[Rs2];;
   return 0;
 }
 
@@ -105,6 +91,14 @@ int OR (char* i_);
 int AND (char* i_);
 
 // B instructions
+int BNE (int Rs1, int Rs2, int Imm, int Funct3) {
+  int cur = 0;
+  Imm = Imm << 1;
+  if (CURRENT_STATE.REGS[Rs1] != CURRENT_STATE.REGS[Rs2])
+    NEXT_STATE.PC = (CURRENT_STATE.PC + 4) + (SIGNEXT(Imm,13));
+  return 0;
+}
+
 int BEQ (char* i_);
 int BLT (char* i_);
 int BGE (char* i_);
