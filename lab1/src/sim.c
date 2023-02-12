@@ -416,6 +416,10 @@ int j_process(char* i_) {
   char rd[6]; rd[5] = '\0';
   char imm[21]; 
 
+  for(int i = 0; i < 5; i++) {
+    rd[i] = i_[31-11+i];
+  }
+
   imm[0] = i_[31-]; 
   imm[1] = i_[31-]; 
   imm[2] = i_[31-]; 
@@ -459,7 +463,62 @@ int u_process(char* i_) {
 
   /* This function execute U type instructions */
 
-  /* Add U instructions here */ 
+  char d_opcode[8];
+  d_opcode[0] = i_[31-6]; 
+  d_opcode[1] = i_[31-5]; 
+  d_opcode[2] = i_[31-4]; 
+  d_opcode[3] = i_[31-3];
+  d_opcode[4] = i_[31-2]; 
+  d_opcode[5] = i_[31-1]; 
+  d_opcode[6] = i_[31-0]; 
+  d_opcode[7] = '\0';
+  char rd[6]; rd[5] = '\0';
+  char imm[21]; 
+
+  for(int i = 0; i < 5; i++) {
+    rd[i] = i_[31-11+i];
+  }
+
+  imm[0] = i_[31-]; 
+  imm[1] = i_[31-]; 
+  imm[2] = i_[31-]; 
+  imm[3] = i_[31-];
+  imm[4] = i_[31-]; 
+  imm[5] = i_[31-]; 
+  imm[6] = i_[31-];
+  imm[7] = i_[31-];
+  imm[8] = i_[31-];
+  imm[9] = i_[31-];
+  imm[10] = i_[31-];
+  imm[11] = i_[31-];
+  imm[12] = i_[31-];
+  imm[13] = i_[31-];
+  imm[14] = i_[31-];
+  imm[15] = i_[31-];
+  imm[16] = i_[31-];
+  imm[17] = i_[31-];
+  imm[18] = i_[31-];
+  imm[19] = i_[31-];
+  imm[20] = i_[31-];
+  imm[21] = '\0';  
+
+  int Rd = bchar_to_int(rd);
+  int Imm = bchar_to_int(imm);
+  printf ("Opcode = %s\n Imm = %d\n Rd = %d\n",
+	  d_opcode, Imm, Rd);
+  printf("\n"); 
+
+  // if(!strcmp(d_opcode,"0110111")) {
+  //   printf("--- This is a LUI instruction. \n");
+  //   LUI(Rd, Imm);
+  //   return 0;
+  // }
+
+  // if(!strcmp(d_opcode,"0010111")) {
+  //   printf("--- This is a AUIPC instruction. \n");
+  //   AUIPC(Rd, Imm);
+  //   return 0;
+  // }
 
   return 1;
 
