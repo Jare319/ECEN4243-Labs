@@ -78,7 +78,14 @@ int SLT (int Rd, int Rs1, int Rs2, int Funct3) {
   return 0;
 }
 
-int SLTU (char* i_);
+int SLTU (int Rd, int Rs1, int Rs2, int Funct3) {
+  if ((unsigned)CURRENT_STATE.REGS[Rs1] < (unsigned)CURRENT_STATE.REGS[Rs2]) {
+    NEXT_STATE.REGS[Rd] = 1;
+  } else {
+    NEXT_STATE.REGS[Rd] = 0;
+  }
+  return 0;
+}
 
 int XOR (char* i_);
 

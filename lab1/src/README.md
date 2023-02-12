@@ -39,7 +39,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] SLT
 - [ ] SLTI
 - [ ] SLTIU
-- [ ] SLTU
+- [X] SLTU
 - [ ] SRA
 - [ ] SRAI
 - [ ] SRL

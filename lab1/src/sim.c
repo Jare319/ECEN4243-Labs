@@ -124,11 +124,11 @@ int r_process(char* i_) {
     return 0;
   }
 
-  // if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"011")) {
-  //   printf("--- This is a SLTU instruction. \n");
-  //   SLTU(Rd, Rs1, Rs2, Funct3);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"011")) {
+    printf("--- This is a SLTU instruction. \n");
+    SLTU(Rd, Rs1, Rs2, Funct3);
+    return 0;
+  }
 
   // if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"100")) {
   //   printf("--- This is an XOR instruction. \n");
@@ -183,7 +183,7 @@ int i_process(char* i_) {
     rd[i] = i_[31-11+i];
   }
   for(int i = 0; i < 12; i++) {
-    imm[i] = i_[31-31+i];
+    imm[i] = i_[i];
   }
   for(int i = 0; i < 3; i++) {
     funct3[i] = i_[31-14+i];
@@ -473,34 +473,15 @@ int u_process(char* i_) {
   d_opcode[6] = i_[31-0]; 
   d_opcode[7] = '\0';
   char rd[6]; rd[5] = '\0';
-  char imm[21]; 
+  char imm[21]; imm[20] = '\0'; 
 
   for(int i = 0; i < 5; i++) {
     rd[i] = i_[31-11+i];
   }
 
-  imm[0] = i_[31-]; 
-  imm[1] = i_[31-]; 
-  imm[2] = i_[31-]; 
-  imm[3] = i_[31-];
-  imm[4] = i_[31-]; 
-  imm[5] = i_[31-]; 
-  imm[6] = i_[31-];
-  imm[7] = i_[31-];
-  imm[8] = i_[31-];
-  imm[9] = i_[31-];
-  imm[10] = i_[31-];
-  imm[11] = i_[31-];
-  imm[12] = i_[31-];
-  imm[13] = i_[31-];
-  imm[14] = i_[31-];
-  imm[15] = i_[31-];
-  imm[16] = i_[31-];
-  imm[17] = i_[31-];
-  imm[18] = i_[31-];
-  imm[19] = i_[31-];
-  imm[20] = i_[31-];
-  imm[21] = '\0';  
+  for (int i = 0; i < 20; i++) {
+    imm[i] = i_[i];
+  }
 
   int Rd = bchar_to_int(rd);
   int Imm = bchar_to_int(imm);
