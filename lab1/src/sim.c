@@ -130,35 +130,35 @@ int r_process(char* i_) {
     return 0;
   }
 
-  // if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"100")) {
-  //   printf("--- This is an XOR instruction. \n");
-  //   XOR(Rd, Rs1, Rs2, Funct3);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"100")) {
+    printf("--- This is an XOR instruction. \n");
+    XOR(Rd, Rs1, Rs2, Funct3);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"101") && !strcmp(funct7,"0000000")) {
-  //   printf("--- This is a SRL instruction. \n");
-  //   SRL(Rd, Rs1, Rs2, Funct3);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"101") && !strcmp(funct7,"0000000")) {
+    printf("--- This is a SRL instruction. \n");
+    SRL(Rd, Rs1, Rs2, Funct3);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"101") && !strcmp(funct7,"0100000")) {
-  //   printf("--- This is a SRA instruction. \n");
-  //   SRA(Rd, Rs1, Rs2, Funct3);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"101") && !strcmp(funct7,"0100000")) {
+    printf("--- This is a SRA instruction. \n");
+    SRA(Rd, Rs1, Rs2, Funct3);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"110")) {
-  //   printf("--- This is an OR instruction. \n");
-  //   OR(Rd, Rs1, Rs2, Funct3);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"110")) {
+    printf("--- This is an OR instruction. \n");
+    OR(Rd, Rs1, Rs2, Funct3);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"111")) {
-  //   printf("--- This is an AND instruction. \n");
-  //   AND(Rd, Rs1, Rs2, Funct3);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"111")) {
+    printf("--- This is an AND instruction. \n");
+    AND(Rd, Rs1, Rs2, Funct3);
+    return 0;
+  }
 
   return 1;	
 }

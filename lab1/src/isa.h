@@ -43,6 +43,7 @@ int SRLI (char* i_);
 int SRAI (char* i_);
 int ORI (char* i_);
 int ANDI (char* i_);
+int JALR (char* i_);
 
 // U Instruction
 int AUIPC (char* i_);
@@ -87,15 +88,63 @@ int SLTU (int Rd, int Rs1, int Rs2, int Funct3) {
   return 0;
 }
 
-int XOR (char* i_);
+int XOR (int Rd, int Rs1, int Rs2, int Funct3){
+  char rs1[]=byte_to_binary(Rs1); rs1[5] = '\0';
+  char rs2[]=byte_to_binary(Rs2); rs2[5] = '\0';
+  char rd[]; rd[5] = '\0';
+  for (int i = 0; i < 4; i++) {
+    if(rs1[i]!=rs2[i]){
+      rd[i]=1;
+    }
+    else{
+      rd[i]=0;
+    }
+  }
+  NEXT_STATE.REGS[Rd] = bchar_to_int(rd);
+  return 0;
+}
 
-int SRL (char* i_);
+int SRL (int Rd, int Rs1, int Rs2, int Funct3) {
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >> CURRENT_STATE.REGS[Rs2];
+  return 0;
+}
 
-int SRA (char* i_);
+int SRA (int Rd, int Rs1, int Rs2, int Funct3) {
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >>> CURRENT_STATE.REGS[Rs2];
+  return 0;
+}
 
-int OR (char* i_);
+int OR (int Rd, int Rs1, int Rs2, int Funct3){
+  char rs1[]=byte_to_binary(Rs1); rs1[5] = '\0';
+  char rs2[]=byte_to_binary(Rs2); rs2[5] = '\0';
+  char rd[]; rd[5] = '\0';
+  for (int i = 0; i < 4; i++) {
+    if(rs1[i] + rs2[i] > 0){
+      rd[i]=1;
+    }
+    else{
+      rd[i]=0;
+    }
+  }
+  NEXT_STATE.REGS[Rd] = bchar_to_int(rd);
+  return 0;
+}
 
-int AND (char* i_);
+int AND (char* i_){
+  char rs1[]=byte_to_binary(Rs1); rs1[5] = '\0';
+  char rs2[]=byte_to_binary(Rs2); rs2[5] = '\0';
+  char rd[]; rd[5] = '\0';
+  for (int i = 0; i < 4; i++) {
+    if(rs1[i] == rs2[i]){
+      rd[i]=1;
+    }
+    else{
+      rd[i]=0;
+    }
+  }
+  NEXT_STATE.REGS[Rd] = bchar_to_int(rd);
+  return 0;
+}
 
 // B instructions
 int BNE (int Rs1, int Rs2, int Imm, int Funct3) {
@@ -111,9 +160,6 @@ int BLT (char* i_);
 int BGE (char* i_);
 int BLTU (char* i_);
 int BGEU (char* i_);
-
-// I instruction
-int JALR (char* i_);
 
 // J instruction
 int JAL (char* i_);
