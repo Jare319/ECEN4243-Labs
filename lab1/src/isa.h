@@ -24,35 +24,53 @@
 
 // I Instructions
 {
-int ADDI (int Rd, int Rs1, int Imm, int Funct3) {
+int ADDI (int Rd, int Rs1, int Imm) {
   int cur = 0;
   cur = CURRENT_STATE.REGS[Rs1] + SIGNEXT(Imm,12);
   NEXT_STATE.REGS[Rd] = cur;
   return 0;
 }
 
-int SLTI (char* i_);
+int SLTI (int Rd, int Rs1, int Imm) {
+  if (CURRENT_STATE.REGS[Rs1] < SIGNEXT(Imm,12)) {
+    NEXT_STATE.REGS[Rd] = 1;
+  } else {
+    NEXT_STATE.REGS[Rd] = 0;
+  }
+  return 0;
+}
+
 int SLTIU (char* i_);
+
 int XORI (char* i_);
+
 int ORI (char* i_);
+
 int ANDI (char* i_);
+
 int JALR (char* i_);
 
 int LB (char* i_); //Imm(Rs1)
+
 int LH (char* i_);
+
 int LW (char* i_);
+
 int LBU (char* i_);
+
 int LHU (char* i_);
 
 int SLLI (char* i_);//Zimm
 
 int SRLI (char* i_);//Zimm & Funct7???
+
 int SRAI (char* i_);
 }
 
 // U Instruction
 {
 int AUIPC (char* i_);
+
 int LUI (char* i_);
 }
 
@@ -67,22 +85,22 @@ int SW (char* i_);
 
 // R instruction
 {
-int ADD (int Rd, int Rs1, int Rs2, int Funct3) {
+int ADD (int Rd, int Rs1, int Rs2) {
   NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] + CURRENT_STATE.REGS[Rs2];;
   return 0;
 }
 
-int SUB (int Rd, int Rs1, int Rs2, int Funct3) {
+int SUB (int Rd, int Rs1, int Rs2) {
   NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] - CURRENT_STATE.REGS[Rs2];
   return 0;
 }
 
-int SLL (int Rd, int Rs1, int Rs2, int Funct3) {
+int SLL (int Rd, int Rs1, int Rs2) {
   NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1]<<CURRENT_STATE.REGS[Rs2];
   return 0;
 }
 
-int SLT (int Rd, int Rs1, int Rs2, int Funct3) {
+int SLT (int Rd, int Rs1, int Rs2) {
   if (CURRENT_STATE.REGS[Rs1] < CURRENT_STATE.REGS[Rs2]) {
     NEXT_STATE.REGS[Rd] = 1;
   } else {
@@ -91,7 +109,7 @@ int SLT (int Rd, int Rs1, int Rs2, int Funct3) {
   return 0;
 }
 
-int SLTU (int Rd, int Rs1, int Rs2, int Funct3) {
+int SLTU (int Rd, int Rs1, int Rs2) {
   if ((unsigned)CURRENT_STATE.REGS[Rs1] < (unsigned)CURRENT_STATE.REGS[Rs2]) {
     NEXT_STATE.REGS[Rd] = 1;
   } else {
@@ -100,7 +118,7 @@ int SLTU (int Rd, int Rs1, int Rs2, int Funct3) {
   return 0;
 }
 
-int XOR (int Rd, int Rs1, int Rs2, int Funct3) {
+int XOR (int Rd, int Rs1, int Rs2) {
   char rs1[]=byte_to_binary(Rs1); rs1[5] = '\0';
   char rs2[]=byte_to_binary(Rs2); rs2[5] = '\0';
   char rd[]; rd[5] = '\0';
@@ -116,17 +134,17 @@ int XOR (int Rd, int Rs1, int Rs2, int Funct3) {
   return 0;
 }
 
-int SRL (int Rd, int Rs1, int Rs2, int Funct3) {
+int SRL (int Rd, int Rs1, int Rs2) {
   NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >> CURRENT_STATE.REGS[Rs2];
   return 0;
 }
 
-int SRA (int Rd, int Rs1, int Rs2, int Funct3) {
+int SRA (int Rd, int Rs1, int Rs2) {
   NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >>> CURRENT_STATE.REGS[Rs2];
   return 0;
 }
 
-int OR (int Rd, int Rs1, int Rs2, int Funct3) {
+int OR (int Rd, int Rs1, int Rs2) {
   char rs1[]=byte_to_binary(Rs1); rs1[5] = '\0';
   char rs2[]=byte_to_binary(Rs2); rs2[5] = '\0';
   char rd[]; rd[5] = '\0';
@@ -142,7 +160,7 @@ int OR (int Rd, int Rs1, int Rs2, int Funct3) {
   return 0;
 }
 
-int AND (int Rd, int Rs1, int Rs2, int Funct3) {
+int AND (int Rd, int Rs1, int Rs2) {
   char rs1[]=byte_to_binary(Rs1); rs1[5] = '\0';
   char rs2[]=byte_to_binary(Rs2); rs2[5] = '\0';
   char rd[]; rd[5] = '\0';
@@ -161,7 +179,7 @@ int AND (int Rd, int Rs1, int Rs2, int Funct3) {
 
 // B instructions
 {
-int BNE (int Rs1, int Rs2, int Imm, int Funct3) {
+int BNE (int Rs1, int Rs2, int Imm) {
   int cur = 0;
   Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] != CURRENT_STATE.REGS[Rs2])
@@ -169,7 +187,7 @@ int BNE (int Rs1, int Rs2, int Imm, int Funct3) {
   return 0;
 }
 
-int BEQ (int Rs1, int Rs2, int Imm, int Funct3) {
+int BEQ (int Rs1, int Rs2, int Imm) {
   int cur = 0;
   Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] == CURRENT_STATE.REGS[Rs2])
@@ -177,7 +195,7 @@ int BEQ (int Rs1, int Rs2, int Imm, int Funct3) {
   return 0;
 }
 
-int BLT (int Rs1, int Rs2, int Imm, int Funct3) {
+int BLT (int Rs1, int Rs2, int Imm) {
   int cur = 0;
   Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] < CURRENT_STATE.REGS[Rs2])
@@ -185,7 +203,7 @@ int BLT (int Rs1, int Rs2, int Imm, int Funct3) {
   return 0;
 }
 
-int BGE (int Rs1, int Rs2, int Imm, int Funct3) {
+int BGE (int Rs1, int Rs2, int Imm) {
   int cur = 0;
   Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] >= CURRENT_STATE.REGS[Rs2])
@@ -193,7 +211,7 @@ int BGE (int Rs1, int Rs2, int Imm, int Funct3) {
   return 0;
 }
 
-int BLTU (int Rs1, int Rs2, int Imm, int Funct3) {
+int BLTU (int Rs1, int Rs2, int Imm) {
   int cur = 0;
   Imm = Imm << 1;
   if ((unsigned)CURRENT_STATE.REGS[Rs1] < (unsigned)CURRENT_STATE.REGS[Rs2])
@@ -201,7 +219,7 @@ int BLTU (int Rs1, int Rs2, int Imm, int Funct3) {
   return 0;
 }
 
-int BGEU (int Rs1, int Rs2, int Imm, int Funct3) {
+int BGEU (int Rs1, int Rs2, int Imm) {
   int cur = 0;
   Imm = Imm << 1;
   if ((unsigned)CURRENT_STATE.REGS[Rs1] >= (unsigned)CURRENT_STATE.REGS[Rs2])
