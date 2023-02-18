@@ -390,8 +390,67 @@ int b_process(char* i_) {
 int s_process(char* i_) {
 
   /* This function execute S type instructions */
+  char d_opcode[8];
+  d_opcode[0] = i_[31-6]; 
+  d_opcode[1] = i_[31-5]; 
+  d_opcode[2] = i_[31-4]; 
+  d_opcode[3] = i_[31-3];
+  d_opcode[4] = i_[31-2]; 
+  d_opcode[5] = i_[31-1]; 
+  d_opcode[6] = i_[31-0]; 
+  d_opcode[7] = '\0';
+  char rs1[6]; rs1[5] = '\0';
+  char rs2[6]; rs2[5] = '\0';		     
+  char funct3[4]; funct3[3] = '\0';
+  char imm[13]; 
+  for(int i = 0; i < 5; i++) {
+    rs1[i] = i_[31-19+i];
+    rs2[i] = i_[31-24+i];                
+  }
+
+  imm[0] = i_[31-]; 
+  imm[1] = i_[31-]; 
+  imm[2] = i_[31-]; 
+  imm[3] = i_[31-];
+  imm[4] = i_[31-]; 
+  imm[5] = i_[31-]; 
+  imm[6] = i_[31-];
+  imm[7] = i_[31-];
+  imm[8] = i_[31-];
+  imm[9] = i_[31-];
+  imm[10] = i_[31-];
+  imm[11] = i_[31-];
+  imm[12] = '\0';  
+
+  for(int i = 0; i < 3; i++) {
+    funct3[i] = i_[31-14+i];
+  }
+  int Rs1 = bchar_to_int(rs1);
+  int Rs2 = bchar_to_int(rs2);  
+  int Funct3 = bchar_to_int(funct3);
+  int Imm = bchar_to_int(imm);
+  printf ("Opcode = %s\n Rs1 = %d\n Rs2 = %d\n Imm = %d\n Funct3 = %d\n\n",
+	  d_opcode, Rs1, Rs2, Imm, Funct3);
+  printf("\n");
 
   /* Add store instructions here */ 
+  //if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"000")) {
+  //  printf("--- This is an SB instruction. \n");
+  //  SB(Rs1, Rs2, Imm);
+  //  return 0;
+  //}	 
+
+  //if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"001")) {
+  //  printf("--- This is an SH instruction. \n");
+  //  SH(Rs1, Rs2, Imm);
+  //  return 0;
+  //}	
+
+  //if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"010")) {
+  //  printf("--- This is an SW instruction. \n");
+  //  SW(Rs1, Rs2, Imm);
+  //  return 0;
+  //}	  
 
   return 1;
 
