@@ -205,11 +205,11 @@ int i_process(char* i_) {
     return 0;
   }	  
 
-  // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"010")) {
-  //   printf("--- This is a SLTI instruction. \n");
-  //   SLTI(Rd, Rs1, Imm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"010")) {
+    printf("--- This is a SLTI instruction. \n");
+    SLTI(Rd, Rs1, Imm);
+    return 0;
+  }
 
   // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"011")) {
   //   printf("--- This is a SLTIU instruction. \n");
