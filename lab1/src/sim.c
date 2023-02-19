@@ -80,7 +80,7 @@ int r_process(char* i_) {
     funct3[i] = i_[31-14+i];
   }
   for(int i = 0; i < 7; i++) {
-    funct7[i] = i_[31-25+i];
+    funct7[i] = i_[i];
   }
 
   int Rs1 = bchar_to_int(rs1);
@@ -275,6 +275,7 @@ int i_process(char* i_) {
   
   
   /*These 3 use Zimm, idk if its different*/
+  /* Zimm is a 5-bit unsigned immediate in imm[4:0]*/
 
   // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"001")) {
   //   printf("--- This is a SLLI instruction. \n");
@@ -282,7 +283,8 @@ int i_process(char* i_) {
   //   return 0;
   // }
 
-  /*These 2 also use funct7?? Even though funct7 is not in the I type format??*/
+  /* These 2 also use funct7?? Even though funct7 is not in the I type format??*/
+  /* These have funct7 encoded as the imm[31:25], not sure how to handle that yet*/
 
   // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"101")) {
   //   printf("--- This is a SRLI instruction. \n");
@@ -402,25 +404,18 @@ int s_process(char* i_) {
   char rs1[6]; rs1[5] = '\0';
   char rs2[6]; rs2[5] = '\0';		     
   char funct3[4]; funct3[3] = '\0';
-  char imm[13]; 
+  char imm[13]; imm[12] = '\0'; 
   for(int i = 0; i < 5; i++) {
     rs1[i] = i_[31-19+i];
     rs2[i] = i_[31-24+i];                
   }
 
-  imm[0] = i_[31-]; 
-  imm[1] = i_[31-]; 
-  imm[2] = i_[31-]; 
-  imm[3] = i_[31-];
-  imm[4] = i_[31-]; 
-  imm[5] = i_[31-]; 
-  imm[6] = i_[31-];
-  imm[7] = i_[31-];
-  imm[8] = i_[31-];
-  imm[9] = i_[31-];
-  imm[10] = i_[31-];
-  imm[11] = i_[31-];
-  imm[12] = '\0';  
+  for (int i = 0; i < 7; i++) {
+    imm[i] = i_[i];
+  }
+  for (int i = 0; i < 5; i++) {
+    imm[7+i] = i_[31-11+i];
+  }
 
   for(int i = 0; i < 3; i++) {
     funct3[i] = i_[31-14+i];
@@ -470,34 +465,34 @@ int j_process(char* i_) {
   d_opcode[6] = i_[31-0]; 
   d_opcode[7] = '\0';
   char rd[6]; rd[5] = '\0';
-  char imm[21]; 
+  char imm[21]; imm[20] = '\0';
 
   for(int i = 0; i < 5; i++) {
     rd[i] = i_[31-11+i];
   }
 
-  imm[0] = i_[31-]; 
-  imm[1] = i_[31-]; 
-  imm[2] = i_[31-]; 
-  imm[3] = i_[31-];
-  imm[4] = i_[31-]; 
-  imm[5] = i_[31-]; 
-  imm[6] = i_[31-];
-  imm[7] = i_[31-];
-  imm[8] = i_[31-];
-  imm[9] = i_[31-];
-  imm[10] = i_[31-];
-  imm[11] = i_[31-];
-  imm[12] = i_[31-];
-  imm[13] = i_[31-];
-  imm[14] = i_[31-];
-  imm[15] = i_[31-];
-  imm[16] = i_[31-];
-  imm[17] = i_[31-];
-  imm[18] = i_[31-];
-  imm[19] = i_[31-];
-  imm[20] = i_[31-];
-  imm[21] = '\0';  
+  imm[0] = i_[31-31]; 
+  imm[1] = i_[31-19]; 
+  imm[2] = i_[31-18]; 
+  imm[3] = i_[31-17];
+  imm[4] = i_[31-16]; 
+  imm[5] = i_[31-15]; 
+  imm[6] = i_[31-14];
+  imm[7] = i_[31-13];
+  imm[8] = i_[31-12];
+  imm[9] = i_[31-20];
+  imm[10] = i_[31-30];
+  imm[11] = i_[31-29];
+  imm[12] = i_[31-28];
+  imm[13] = i_[31-27];
+  imm[14] = i_[31-26];
+  imm[15] = i_[31-25];
+  imm[16] = i_[31-24];
+  imm[17] = i_[31-23];
+  imm[18] = i_[31-22];
+  imm[19] = i_[31-21];
+ 
+    
 
   int Rd = bchar_to_int(rd);
   int Imm = bchar_to_int(imm);
