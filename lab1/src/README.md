@@ -13,15 +13,15 @@ The easiest, but also most tedious part will be the actual implementation of eac
 ## Instruction List
 - [X] ADD 
 - [X] ADDI 
-- [ ] AND
+- [X] AND
 - [ ] ANDI
 - [ ] AUIPC
-- [ ] BEQ
-- [ ] BGE
-- [ ] BGEU
-- [ ] BLT
-- [ ] BLTU
-- [ ] BNE
+- [X] BEQ
+- [X] BGE
+- [X] BGEU
+- [X] BLT
+- [X] BLTU
+- [X] BNE
 - [ ] JAL
 - [ ] JALR
 - [ ] LB
@@ -30,22 +30,22 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [ ] LHU
 - [ ] LUI
 - [ ] LW
-- [ ] OR
+- [X] OR
 - [ ] ORI
 - [ ] SB
 - [ ] SH
 - [X] SLL
 - [ ] SLLI
 - [X] SLT
-- [ ] SLTI
+- [X] SLTI
 - [ ] SLTIU
 - [X] SLTU
-- [ ] SRA
+- [X] SRA
 - [ ] SRAI
-- [ ] SRL
+- [X] SRL
 - [ ] SRLI
 - [X] SUB
 - [ ] SW
-- [ ] XOR
+- [X] XOR
 - [ ] XORI
 - [ ] ECALL
