@@ -26,13 +26,13 @@
 
 int ADDI (int Rd, int Rs1, int Imm) {
   int cur = 0;
-  cur = CURRENT_STATE.REGS[Rs1] + SIGNEXT(Imm,12);
+  cur = CURRENT_STATE.REGS[Rs1] + SIGNEXT(Imm,11);
   NEXT_STATE.REGS[Rd] = cur;
   return 0;
 }
 
 int SLTI (int Rd, int Rs1, int Imm) {
-  if (CURRENT_STATE.REGS[Rs1] < SIGNEXT(Imm,12)) {
+  if (CURRENT_STATE.REGS[Rs1] < SIGNEXT(Imm,11)) {
     NEXT_STATE.REGS[Rd] = 1;
   } else {
     NEXT_STATE.REGS[Rd] = 0;
@@ -41,7 +41,7 @@ int SLTI (int Rd, int Rs1, int Imm) {
 }
 
 int SLTIU (int Rd, int Rs1, int Imm) {
-  if (CURRENT_STATE.REGS[Rs1] < (unsigned)SIGNEXT(Imm,12)) {
+  if (CURRENT_STATE.REGS[Rs1] < (unsigned)SIGNEXT(Imm,11)) {
     NEXT_STATE.REGS[Rd] = 1;
   } else {
     NEXT_STATE.REGS[Rd] = 0;
@@ -50,19 +50,19 @@ int SLTIU (int Rd, int Rs1, int Imm) {
 }
 
 int XORI (int Rd, int Rs1, int Imm) {
-  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] ^ SIGNEXT(Imm,12);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] ^ SIGNEXT(Imm,11);
 }
 
 int ORI (int Rd, int Rs1, int Imm) {
-  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] | SIGNEXT(Imm,12);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] | SIGNEXT(Imm,11);
 }
 
 int ANDI (int Rd, int Rs1, int Imm) {
-  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] & SIGNEXT(Imm,12);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] & SIGNEXT(Imm,11);
 }
 
 int JALR (int Rd, int Rs1, int Imm) {
-  NEXT_STATE.PC = CURRENT_STATE.REGS[Rs1] + SIGNEXT(Imm, 12);
+  NEXT_STATE.PC = CURRENT_STATE.REGS[Rs1] + SIGNEXT(Imm, 11);
   NEXT_STATE.REGS[Rd] = CURRENT_STATE.PC + 4;
 }
 
@@ -102,7 +102,7 @@ int SW (char* i_);
 // R instruction
 
 int ADD (int Rd, int Rs1, int Rs2) {
-  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] + CURRENT_STATE.REGS[Rs2];;
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] + CURRENT_STATE.REGS[Rs2];
   return 0;
 }
 
