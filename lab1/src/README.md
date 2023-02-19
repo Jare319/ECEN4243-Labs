@@ -14,7 +14,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] ADD 
 - [X] ADDI 
 - [X] AND
-- [ ] ANDI
+- [X] ANDI
 - [ ] AUIPC
 - [X] BEQ
 - [X] BGE
@@ -23,7 +23,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] BLTU
 - [X] BNE
 - [ ] JAL
-- [ ] JALR
+- [X] JALR
 - [ ] LB
 - [ ] LBU
 - [ ] LH
@@ -31,14 +31,14 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [ ] LUI
 - [ ] LW
 - [X] OR
-- [ ] ORI
+- [X] ORI
 - [ ] SB
 - [ ] SH
 - [X] SLL
 - [ ] SLLI
 - [X] SLT
 - [X] SLTI
-- [ ] SLTIU
+- [X] SLTIU
 - [X] SLTU
 - [X] SRA
 - [ ] SRAI
@@ -47,5 +47,5 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] SUB
 - [ ] SW
 - [X] XOR
-- [ ] XORI
-- [ ] ECALL
+- [X] XORI
+- [X] ECALL

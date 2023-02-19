@@ -40,31 +40,47 @@ int SLTI (int Rd, int Rs1, int Imm) {
   return 0;
 }
 
-int SLTIU (char* i_);
+int SLTIU (int Rd, int Rs1, int Imm) {
+  if (CURRENT_STATE.REGS[Rs1] < (unsigned)SIGNEXT(Imm,12)) {
+    NEXT_STATE.REGS[Rd] = 1;
+  } else {
+    NEXT_STATE.REGS[Rd] = 0;
+  }
+  return 0;
+}
 
-int XORI (char* i_);
+int XORI (int Rd, int Rs1, int Imm) {
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] ^ SIGNEXT(Imm,12);
+}
 
-int ORI (char* i_);
+int ORI (int Rd, int Rs1, int Imm) {
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] | SIGNEXT(Imm,12);
+}
 
-int ANDI (char* i_);
+int ANDI (int Rd, int Rs1, int Imm) {
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] & SIGNEXT(Imm,12);
+}
 
-int JALR (char* i_);
+int JALR (int Rd, int Rs1, int Imm) {
+  NEXT_STATE.PC = CURRENT_STATE.REGS[Rs1] + SIGNEXT(Imm, 12);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.PC + 4;
+}
 
-int LB (char* i_); //Imm(Rs1)
+int LB (int Rd, int Rs1, int Imm); //Imm(Rs1)
 
-int LH (char* i_);
+int LH (int Rd, int Rs1, int Imm);
 
-int LW (char* i_);
+int LW (int Rd, int Rs1, int Imm);
 
-int LBU (char* i_);
+int LBU (int Rd, int Rs1, int Imm);
 
-int LHU (char* i_);
+int LHU (int Rd, int Rs1, int Imm);
 
-int SLLI (char* i_);//Zimm
+int SLLI (int Rd, int Rs1, int Imm); // Zimm & Funct7 derived from Imm[4:0] and Imm[31:25] respectively, no need to pass as input
 
-int SRLI (char* i_);//Zimm & Funct7???
+int SRLI (int Rd, int Rs1, int Imm);
 
-int SRAI (char* i_);
+int SRAI (int Rd, int Rs1, int Imm);
 
 
 // U Instruction

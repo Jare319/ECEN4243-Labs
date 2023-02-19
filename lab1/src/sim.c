@@ -211,35 +211,35 @@ int i_process(char* i_) {
     return 0;
   }
 
-  // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"011")) {
-  //   printf("--- This is a SLTIU instruction. \n");
-  //   SLTIU(Rd, Rs1, Imm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"011")) {
+    printf("--- This is a SLTIU instruction. \n");
+    SLTIU(Rd, Rs1, Imm);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"100")) {
-  //   printf("--- This is an XORI instruction. \n");
-  //   XORI(Rd, Rs1, Imm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"100")) {
+    printf("--- This is an XORI instruction. \n");
+    XORI(Rd, Rs1, Imm);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"110")) {
-  //   printf("--- This is an ORI instruction. \n");
-  //   ORI(Rd, Rs1, Imm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"110")) {
+    printf("--- This is an ORI instruction. \n");
+    ORI(Rd, Rs1, Imm);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"111")) {
-  //   printf("--- This is an ANDI instruction. \n");
-  //   ANDI(Rd, Rs1, Imm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"111")) {
+    printf("--- This is an ANDI instruction. \n");
+    ANDI(Rd, Rs1, Imm);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"1100111") && !strcmp(funct3,"000")) {
-  //   printf("--- This is an JALR instruction. \n");
-  //   JALR(Rd, Rs1, Imm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"1100111") && !strcmp(funct3,"000")) {
+    printf("--- This is an JALR instruction. \n");
+    JALR(Rd, Rs1, Imm);
+    return 0;
+  }
 
   /*These 5 use Imm(rs1), not sure what that is*/
 
