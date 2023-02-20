@@ -96,7 +96,7 @@ int LW (int Rd, int Rs1, int Imm) {
 }
 
 int LBU (int Rd, int Rs1, int Imm) {
-  char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm,11)));
+  char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm, 11)));
   char byte[9]; byte[8] = '\0';
   for (int i = 0; i < 8; i++) {
     byte[i] = word[i];
@@ -185,11 +185,20 @@ int LUI (int Rd, int Imm) {
 
 // S Instruction
 
-int SB (char* i_);
+int SB (int Rs1, int Rs2, int Imm){
 
-int SH (char* i_);
+  return 0;
+}
 
-int SW (char* i_);
+int SH (int Rs1, int Rs2, int Imm){
+
+  return 0;
+}
+
+int SW (int Rs1, int Rs2, int Imm){
+  NEXT_STATE.REGS[Rs1 + SIGNEXT(Imm, 11)] = mem_read_32(Rs2);
+  return 0;
+}
 
 
 // R instruction

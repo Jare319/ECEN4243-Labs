@@ -6,7 +6,7 @@ Within `sim.c`, we should probably implement all the instructions for the `r`, `
 The easiest, but also most tedious part will be the actual implementation of each function in the `isa.h`, which should probably be done last.
 
 ## TODO:
-- [ ] implement the calls to each function in `sim.c`
+- [X] implement the calls to each function in `sim.c`
 - [X] implement the bit sting decoder for the `s`, `j`, and `u` processes in `sim.c`
 - [ ] implement and test each operation in `isa.h`
 
@@ -22,7 +22,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] BLT
 - [X] BLTU
 - [X] BNE
-- [ ] JAL
+- [X] JAL
 - [X] JALR
 - [X] LB
 - [X] LBU
@@ -48,4 +48,4 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [ ] SW
 - [X] XOR
 - [X] XORI
-- [X] ECALL
+- [] ECALL
