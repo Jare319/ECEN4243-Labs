@@ -168,7 +168,7 @@ int AUIPC (int Rd, int Imm) {
 }
 
 int LUI (int Rd, int Imm) {
-  char upimm[32];
+  char upimm[33]; upimm[32] = '\0';
   char *imm = byte_to_binary32(Imm);
   for (int i = 0; i < 32; i++) {
     if (i < 20) {
@@ -185,18 +185,33 @@ int LUI (int Rd, int Imm) {
 
 // S Instruction
 
-int SB (int Rs1, int Rs2, int Imm){
-
+int SB (int Rs1, int Rs2, int Imm) {
+  char byte[9]; byte[8] = '\0';
+  char *mem = mem_read_32(Rs1+SIGNEXT(Imm,11));
+  for (int i = 0; i < 8; i++) {
+    byte[i] = mem[31-7+i];
+  }
+  NEXT_STATE.REGS[Rs2] = bchar_to_int(byte);
   return 0;
 }
 
-int SH (int Rs1, int Rs2, int Imm){
-
+int SH (int Rs1, int Rs2, int Imm) {
+  char half[17]; half[16] = '\0';
+  char *mem = mem_read_32(Rs1+SIGNEXT(Imm,11));
+  for (int i = 0; i < 16; i++) {
+    half[i] = mem[31-15+i];
+  }
+  NEXT_STATE.REGS[Rs2] = bchar_to_int(half);
   return 0;
 }
 
-int SW (int Rs1, int Rs2, int Imm){
-  NEXT_STATE.REGS[Rs1 + SIGNEXT(Imm, 11)] = mem_read_32(Rs2);
+int SW (int Rs1, int Rs2, int Imm) {
+  char word[33]; word[32] = '\0';
+  char *mem = mem_read_32(Rs1+SIGNEXT(Imm,11));
+  for (int i = 0; i < 32; i++) {
+    word[i] = mem[31-7+i];
+  }
+  NEXT_STATE.REGS[Rs2] = bchar_to_int(word);
   return 0;
 }
 
