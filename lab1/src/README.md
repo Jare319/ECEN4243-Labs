@@ -7,7 +7,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 
 ## TODO:
 - [ ] implement the calls to each function in `sim.c`
-- [X] implement the bit sting decoder for the `s`, `j`, and `u` processes in `sim.c`
+- [X] implement the bit string decoder for the `s`, `j`, and `u` processes in `sim.c`
 - [ ] implement and test each operation in `isa.h`
 
 ## Instruction List
@@ -32,8 +32,8 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] LW
 - [X] OR
 - [X] ORI
-- [ ] SB
-- [ ] SH
+- [X] SB
+- [X] SH
 - [X] SLL
 - [X] SLLI
 - [X] SLT
@@ -45,7 +45,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] SRL
 - [X] SRLI
 - [X] SUB
-- [ ] SW
+- [X] SW
 - [X] XOR
 - [X] XORI
 - [X] ECALL
