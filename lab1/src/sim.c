@@ -546,17 +546,17 @@ int u_process(char* i_) {
 	  d_opcode, Imm, Rd);
   printf("\n"); 
 
-  // if(!strcmp(d_opcode,"0110111")) {
-  //   printf("--- This is a LUI instruction. \n");
-  //   LUI(Rd, Imm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0110111")) {
+    printf("--- This is a LUI instruction. \n");
+    LUI(Rd, Imm);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0010111")) {
-  //   printf("--- This is a AUIPC instruction. \n");
-  //   AUIPC(Rd, Imm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0010111")) {
+    printf("--- This is a AUIPC instruction. \n");
+    AUIPC(Rd, Imm);
+    return 0;
+  }
 
   return 1;
 

@@ -15,7 +15,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] ADDI 
 - [X] AND
 - [X] ANDI
-- [ ] AUIPC
+- [X] AUIPC
 - [X] BEQ
 - [X] BGE
 - [X] BGEU
@@ -28,7 +28,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] LBU
 - [X] LH
 - [X] LHU
-- [ ] LUI
+- [X] LUI
 - [X] LW
 - [X] OR
 - [X] ORI
