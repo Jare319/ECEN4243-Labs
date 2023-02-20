@@ -66,15 +66,45 @@ int JALR (int Rd, int Rs1, int Imm) {
   NEXT_STATE.REGS[Rd] = CURRENT_STATE.PC + 4;
 }
 
-int LB (int Rd, int Rs1, int Imm); //Imm(Rs1)
+int LB (int Rd, int Rs1, int Imm) {
+  char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm, 11)));
+  char *byte;
+  for (int i = 0; i < 8; i++) {
+    byte[i] = word[i];
+  }
+  NEXT_STATE.REGS[Rd] = SIGNEXT(bchar_to_int(byte), 7);
+}
 
-int LH (int Rd, int Rs1, int Imm);
+int LH (int Rd, int Rs1, int Imm) {
+  char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm, 11)));
+  char *half;
+  for (int i = 0; i < 8; i++) {
+    half[i] = word[i];
+  }
+  NEXT_STATE.REGS[Rd] = SIGNEXT(bchar_to_int(half), 15);
+}
 
-int LW (int Rd, int Rs1, int Imm);
+int LW (int Rd, int Rs1, int Imm) {
+  NEXT_STATE.REGS[Rd] = mem_read_32(Rs1 + SIGNEXT(Imm, 11));
+}
 
-int LBU (int Rd, int Rs1, int Imm);
+int LBU (int Rd, int Rs1, int Imm) {
+  char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm,11)));
+  char *byte;
+  for (int i = 0; i < 8; i++) {
+    byte[i] = word[i];
+  }
+  NEXT_STATE.REGS[Rd] = (unsigned)bchar_to_int(byte);
+}
 
-int LHU (int Rd, int Rs1, int Imm);
+int LHU (int Rd, int Rs1, int Imm) {
+  char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm, 11)));
+  char *half;
+  for (int i = 0; i < 8; i++) {
+    half[i] = word[i];
+  }
+  NEXT_STATE.REGS[Rd] = (unsigned)bchar_to_int(half);
+}
 
 int SLLI (int Rd, int Rs1, int Imm); // Zimm & Funct7 derived from Imm[4:0] and Imm[31:25] respectively, no need to pass as input
 
@@ -150,6 +180,7 @@ int XOR (int Rd, int Rs1, int Rs2) {
   return 0;
 }
 
+/* These 2 shift-right statements should be changed to enforce the logical/arithmetic distinction, as it is undertermined otherwise*/
 int SRL (int Rd, int Rs1, int Rs2) {
   NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >> CURRENT_STATE.REGS[Rs2];
   return 0;

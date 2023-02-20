@@ -242,36 +242,37 @@ int i_process(char* i_) {
   }
 
   /*These 5 use Imm(rs1), not sure what that is*/
+  /* This acts as the address, given by Rs1 + Imm */
 
-  // if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"000")) {
-  //   printf("--- This is a LB instruction. \n");
-  //   LB(Rd, Imm(Rs1));
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"000")) {
+    printf("--- This is a LB instruction. \n");
+    LB(Rd, Rs1, Imm);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"001")) {
-  //   printf("--- This is a LH instruction. \n");
-  //   LH(Rd, Imm(Rs1));
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"001")) {
+    printf("--- This is a LH instruction. \n");
+    LH(Rd, Rs1, Imm);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"010")) {
-  //   printf("--- This is a LW instruction. \n");
-  //   LW(Rd, Imm(Rs1));
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"010")) {
+    printf("--- This is a LW instruction. \n");
+    LW(Rd, Rs1, Imm);
+    return 0;
+  }
   
-  // if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"100")) {
-  //   printf("--- This is a LBU instruction. \n");
-  //   LBU(Rd, Imm(Rs1));
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"100")) {
+    printf("--- This is a LBU instruction. \n");
+    LBU(Rd, Rs1, Imm);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"101")) {
-  //   printf("--- This is a LHU instruction. \n");
-  //   LHU(Rd, Imm(Rs1));
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"101")) {
+    printf("--- This is a LHU instruction. \n");
+    LHU(Rd, Rs1, Imm);
+    return 0;
+  }
   
   
   /*These 3 use Zimm, idk if its different*/

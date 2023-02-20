@@ -7,7 +7,7 @@ The easiest, but also most tedious part will be the actual implementation of eac
 
 ## TODO:
 - [ ] implement the calls to each function in `sim.c`
-- [ ] implement the bit sting decoder for the `s`, `j`, and `u` processes in `sim.c`
+- [X] implement the bit sting decoder for the `s`, `j`, and `u` processes in `sim.c`
 - [ ] implement and test each operation in `isa.h`
 
 ## Instruction List
@@ -24,12 +24,12 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] BNE
 - [ ] JAL
 - [X] JALR
-- [ ] LB
-- [ ] LBU
-- [ ] LH
-- [ ] LHU
+- [X] LB
+- [X] LBU
+- [X] LH
+- [X] LHU
 - [ ] LUI
-- [ ] LW
+- [X] LW
 - [X] OR
 - [X] ORI
 - [ ] SB
