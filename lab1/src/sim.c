@@ -435,23 +435,23 @@ int s_process(char* i_) {
   printf("\n");
 
   /* Add store instructions here */ 
-  //if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"000")) {
-  //  printf("--- This is an SB instruction. \n");
-  //  SB(Rs1, Rs2, Imm);
-  //  return 0;
-  //}	 
+  if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"000")) {
+   printf("--- This is an SB instruction. \n");
+   SB(Rs1, Rs2, Imm);
+   return 0;
+  }	 
 
-  //if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"001")) {
-  //  printf("--- This is an SH instruction. \n");
-  //  SH(Rs1, Rs2, Imm);
-  //  return 0;
-  //}	
+  if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"001")) {
+   printf("--- This is an SH instruction. \n");
+   SH(Rs1, Rs2, Imm);
+   return 0;
+  }	
 
-  //if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"010")) {
-  //  printf("--- This is an SW instruction. \n");
-  //  SW(Rs1, Rs2, Imm);
-  //  return 0;
-  //}	  
+  if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"010")) {
+   printf("--- This is an SW instruction. \n");
+   SW(Rs1, Rs2, Imm);
+   return 0;
+  }	  
 
   return 1;
 
