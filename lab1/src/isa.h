@@ -68,7 +68,7 @@ int JALR (int Rd, int Rs1, int Imm) {
 
 int LB (int Rd, int Rs1, int Imm) {
   char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm, 11)));
-  char *byte;
+  char byte[9]; byte[8] = '\0';
   for (int i = 0; i < 8; i++) {
     byte[i] = word[i];
   }
@@ -77,8 +77,8 @@ int LB (int Rd, int Rs1, int Imm) {
 
 int LH (int Rd, int Rs1, int Imm) {
   char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm, 11)));
-  char *half;
-  for (int i = 0; i < 8; i++) {
+  char half[17]; half[16] = '\0';
+  for (int i = 0; i < 16; i++) {
     half[i] = word[i];
   }
   NEXT_STATE.REGS[Rd] = SIGNEXT(bchar_to_int(half), 15);
@@ -90,7 +90,7 @@ int LW (int Rd, int Rs1, int Imm) {
 
 int LBU (int Rd, int Rs1, int Imm) {
   char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm,11)));
-  char *byte;
+  char byte[9]; byte[8] = '\0';
   for (int i = 0; i < 8; i++) {
     byte[i] = word[i];
   }
@@ -99,18 +99,43 @@ int LBU (int Rd, int Rs1, int Imm) {
 
 int LHU (int Rd, int Rs1, int Imm) {
   char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm, 11)));
-  char *half;
-  for (int i = 0; i < 8; i++) {
+  char half[17]; half[16] = '\0';
+  for (int i = 0; i < 16; i++) {
     half[i] = word[i];
   }
   NEXT_STATE.REGS[Rd] = (unsigned)bchar_to_int(half);
 }
 
-int SLLI (int Rd, int Rs1, int Imm); // Zimm & Funct7 derived from Imm[4:0] and Imm[31:25] respectively, no need to pass as input
+// Zimm & Funct7 derived from Imm[4:0] and Imm[31:25] respectively, no need to pass as input
+int SLLI (int Rd, int Rs1, int Imm) {
+  char *ImmBinary = byte_to_binary32(Imm);
+  char ZimmBinary[6]; ZimmBinary[5] = "\0";
+  for (int i = 0; i < 5; i++) {
+    ZimmBinary[i] = ImmBinary[31-24+i];
+  }
+  int Zimm = (unsigned)bchar_to_int(ZimmBinary);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] << Zimm;
+}
 
-int SRLI (int Rd, int Rs1, int Imm);
+int SRLI (int Rd, int Rs1, int Imm) {
+  char *ImmBinary = byte_to_binary32(Imm);
+  char ZimmBinary[6]; ZimmBinary[5] = "\0";
+  for (int i = 0; i < 5; i++) {
+    ZimmBinary[i] = ImmBinary[31-24+i];
+  }
+  int Zimm = (unsigned)bchar_to_int(ZimmBinary);
+  NEXT_STATE.REGS[Rd] = (unsigned)CURRENT_STATE.REGS[Rs1] >> Zimm; // This is a quick and dirty attempt to get this to work, however this may not end up doing the arithmetic shift correctly.
+}
 
-int SRAI (int Rd, int Rs1, int Imm);
+int SRAI (int Rd, int Rs1, int Imm) {
+  char *ImmBinary = byte_to_binary32(Imm);
+  char ZimmBinary[6]; ZimmBinary[5] = "\0";
+  for (int i = 0; i < 5; i++) {
+    ZimmBinary[i] = ImmBinary[31-24+i];
+  }
+  int Zimm = (unsigned)bchar_to_int(ZimmBinary);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >> Zimm;
+}
 
 
 // U Instruction

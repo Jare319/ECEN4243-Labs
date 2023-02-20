@@ -178,6 +178,7 @@ int i_process(char* i_) {
   char rd[6]; rd[5] = '\0';
   char funct3[4]; funct3[3] = '\0';
   char imm[13]; imm[12] = '\0';
+  char funct7[8]; funct7[7] = '\0';
   for(int i = 0; i < 5; i++) {
     rs1[i] = i_[31-19+i];
     rd[i] = i_[31-11+i];
@@ -188,12 +189,16 @@ int i_process(char* i_) {
   for(int i = 0; i < 3; i++) {
     funct3[i] = i_[31-14+i];
   }
+  for (int i = 0; i < 7; i++) {
+    funct7[i] = i_[i];
+  }
   int Rs1 = bchar_to_int(rs1);
   int Rd = bchar_to_int(rd);
   int Funct3 = bchar_to_int(funct3);
   int Imm = bchar_to_int(imm);
-  printf ("Opcode = %s\n Rs1 = %d\n Imm = %d\n Rd = %d\n Funct3 = %d\n\n",
-	  d_opcode, Rs1, Imm, Rd, Funct3);
+  int Funct7 = bchar_to_int(funct7);
+  printf ("Opcode = %s\n Rs1 = %d\n Imm = %d\n Rd = %d\n Funct3 = %d\n Funct7 = %d\n\n",
+	  d_opcode, Rs1, Imm, Rd, Funct3, Funct7);
   printf("\n");
 
   /* Add other imm instructions here */ 
@@ -278,26 +283,26 @@ int i_process(char* i_) {
   /*These 3 use Zimm, idk if its different*/
   /* Zimm is a 5-bit unsigned immediate in imm[4:0]*/
 
-  // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"001")) {
-  //   printf("--- This is a SLLI instruction. \n");
-  //   SLLI(Rd, Rs1, Zimm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"001") && !strcmp(funct7,"0000000")) {
+    printf("--- This is a SLLI instruction. \n");
+    SLLI(Rd, Rs1, Imm);
+    return 0;
+  }
 
   /* These 2 also use funct7?? Even though funct7 is not in the I type format??*/
   /* These have funct7 encoded as the imm[31:25], not sure how to handle that yet*/
 
-  // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"101")) {
-  //   printf("--- This is a SRLI instruction. \n");
-  //   SRLI(Rd, Rs1, Zimm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"101") && !strcmp(funct7,"0000000")) {
+    printf("--- This is a SRLI instruction. \n");
+    SRLI(Rd, Rs1, Imm);
+    return 0;
+  }
 
-  // if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"101")) {
-  //   printf("--- This is a SRAI instruction. \n");
-  //   SRAI(Rd, Rs1, Zimm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"101") && !strcmp(funct7,"0100000")) {
+    printf("--- This is a SRAI instruction. \n");
+    SRAI(Rd, Rs1, Imm);
+    return 0;
+  }
 
   return 1;	
 }

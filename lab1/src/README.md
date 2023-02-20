@@ -35,15 +35,15 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [ ] SB
 - [ ] SH
 - [X] SLL
-- [ ] SLLI
+- [X] SLLI
 - [X] SLT
 - [X] SLTI
 - [X] SLTIU
 - [X] SLTU
 - [X] SRA
-- [ ] SRAI
+- [X] SRAI
 - [X] SRL
-- [ ] SRLI
+- [X] SRLI
 - [X] SUB
 - [ ] SW
 - [X] XOR
