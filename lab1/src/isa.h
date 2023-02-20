@@ -249,8 +249,9 @@ int SRL (int Rd, int Rs1, int Rs2) {
   return 0;
 }
 
+/* >>> is the verilog operator for arithmetic shift */
 int SRA (int Rd, int Rs1, int Rs2) {
-  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >> CURRENT_STATE.REGS[Rs2];
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >>> CURRENT_STATE.REGS[Rs2];
   return 0;
 }
 
@@ -342,7 +343,11 @@ int BGEU (int Rs1, int Rs2, int Imm) {
 
 
 // J instruction
-int JAL (char* i_);
+int JAL (int Rd, int Imm) {
+  NEXT_STATE.PC = CURRENT_STATE.PC + SIGNEXT(Imm, 11);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.PC + 4;
+  return 0;
+}
 
 int ECALL (char* i_){return 0;}
 

@@ -246,9 +246,6 @@ int i_process(char* i_) {
     return 0;
   }
 
-  /*These 5 use Imm(rs1), not sure what that is*/
-  /* This acts as the address, given by Rs1 + Imm */
-
   if(!strcmp(d_opcode,"0000011") && !strcmp(funct3,"000")) {
     printf("--- This is a LB instruction. \n");
     LB(Rd, Rs1, Imm);
@@ -279,8 +276,6 @@ int i_process(char* i_) {
     return 0;
   }
   
-  
-  /*These 3 use Zimm, idk if its different*/
   /* Zimm is a 5-bit unsigned immediate in imm[4:0]*/
 
   if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"001") && !strcmp(funct7,"0000000")) {
@@ -288,9 +283,6 @@ int i_process(char* i_) {
     SLLI(Rd, Rs1, Imm);
     return 0;
   }
-
-  /* These 2 also use funct7?? Even though funct7 is not in the I type format??*/
-  /* These have funct7 encoded as the imm[31:25], not sure how to handle that yet*/
 
   if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"101") && !strcmp(funct7,"0000000")) {
     printf("--- This is a SRLI instruction. \n");
@@ -506,11 +498,11 @@ int j_process(char* i_) {
 	  d_opcode, Imm, Rd);
   printf("\n");
 
-  // if(!strcmp(d_opcode,"1101111")) {
-  //   printf("--- This is a JAL instruction. \n");
-  //   JAL(Rd, Imm);
-  //   return 0;
-  // }
+  if(!strcmp(d_opcode,"1101111")) {
+    printf("--- This is a JAL instruction. \n");
+    JAL(Rd, Imm);
+    return 0;
+  }
 
   return 1;
 
