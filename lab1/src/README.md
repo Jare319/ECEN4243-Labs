@@ -48,10 +48,44 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] SW
 - [X] XOR
 - [X] XORI
-- [] ECALL
+- [X] ECALL
 
-00101000101100000001010001100011
-00100110101100000001111001100011
-
-00000000001000001000011001100011
-00000000001000001000011001100011
+## Memfile Testing Checklist
+- [ ] ADD 
+- [ ] ADDI 
+- [ ] AND
+- [ ] ANDI
+- [ ] AUIPC
+- [ ] BEQ
+- [ ] BGE
+- [ ] BGEU
+- [ ] BLT
+- [ ] BLTU
+- [ ] BNE
+- [ ] JAL
+- [ ] JALR
+- [ ] LB
+- [ ] LBU
+- [ ] LH
+- [ ] LHU
+- [ ] LUI
+- [ ] LW
+- [ ] OR
+- [ ] ORI
+- [ ] SB
+- [ ] SH
+- [ ] SLL
+- [ ] SLLI
+- [ ] SLT
+- [ ] SLTI
+- [ ] SLTIU
+- [ ] SLTU
+- [ ] SRA
+- [ ] SRAI
+- [ ] SRL
+- [ ] SRLI
+- [ ] SUB
+- [ ] SW
+- [ ] XOR
+- [X] XORI
+- [X] ECALL
