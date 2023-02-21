@@ -51,17 +51,17 @@ The easiest, but also most tedious part will be the actual implementation of eac
 - [X] ECALL
 
 ## Memfile Testing Checklist
-- [ ] ADD 
-- [ ] ADDI 
-- [ ] AND
-- [ ] ANDI
+- [X] ADD 
+- [X] ADDI 
+- [X] AND
+- [X] ANDI
 - [ ] AUIPC
-- [ ] BEQ
+- [X] BEQ
 - [ ] BGE
 - [ ] BGEU
 - [ ] BLT
 - [ ] BLTU
-- [ ] BNE
+- [X] BNE
 - [ ] JAL
 - [ ] JALR
 - [ ] LB
