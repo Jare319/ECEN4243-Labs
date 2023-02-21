@@ -109,7 +109,7 @@ int ANDI (int Rd, int Rs1, int Imm) {
 
 int JALR (int Rd, int Rs1, int Imm) {
   NEXT_STATE.PC = CURRENT_STATE.REGS[Rs1] + SIGNEXT(Imm, 11);
-  NEXT_STATE.REGS[Rd] = CURRENT_STATE.PC + 4;
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.PC + 8;
   return 0;
 }
 
@@ -367,7 +367,7 @@ int BGEU (int Rs1, int Rs2, int BTA) {
 // J instruction
 int JAL (int Rd, int JTA) {
   NEXT_STATE.PC = JTA;
-  NEXT_STATE.REGS[Rd] = CURRENT_STATE.PC + 4;
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.PC + 8;
   return 0;
 }
 
