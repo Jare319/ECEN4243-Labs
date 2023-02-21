@@ -315,42 +315,54 @@ int AND (int Rd, int Rs1, int Rs2) {
 
 // B instructions
 
-int BNE (int Rs1, int Rs2, int BTA) {
+int BNE (int Rs1, int Rs2, int Imm) {
   if (CURRENT_STATE.REGS[Rs1] != CURRENT_STATE.REGS[Rs2]) {
-    NEXT_STATE.PC = CURRENT_STATE.PC + 4 + BTA;
+    int BTA = CURRENT_STATE.PC + SIGNEXT(Imm << 1, 12);
+    printf(" BTA: %x", BTA);
+    NEXT_STATE.PC = BTA;
   }
   return 0;
 }
 
-int BEQ (int Rs1, int Rs2, int BTA) {
+int BEQ (int Rs1, int Rs2, int Imm) {
   if (CURRENT_STATE.REGS[Rs1] == CURRENT_STATE.REGS[Rs2]) {
-    NEXT_STATE.PC = CURRENT_STATE.PC + 4 + BTA;
+    int BTA = CURRENT_STATE.PC + SIGNEXT(Imm << 1, 12);
+    printf(" BTA: %x", BTA);
+    NEXT_STATE.PC = BTA;
   }
   return 0;
 }
 
-int BLT (int Rs1, int Rs2, int BTA) {
+int BLT (int Rs1, int Rs2, int Imm) {
   if (CURRENT_STATE.REGS[Rs1] < CURRENT_STATE.REGS[Rs2]) {
-    NEXT_STATE.PC = CURRENT_STATE.PC + 4 + BTA;
+    int BTA = CURRENT_STATE.PC + SIGNEXT(Imm << 1, 12);
+    printf(" BTA: %x", BTA);
+    NEXT_STATE.PC = BTA;
   }
   return 0;
 }
 
-int BGE (int Rs1, int Rs2, int BTA) {
+int BGE (int Rs1, int Rs2, int Imm) {
   if (CURRENT_STATE.REGS[Rs1] >= CURRENT_STATE.REGS[Rs2])
-    NEXT_STATE.PC = CURRENT_STATE.PC + 4 + BTA;
+    int BTA = CURRENT_STATE.PC + SIGNEXT(Imm << 1, 12);
+    printf(" BTA: %x", BTA);
+    NEXT_STATE.PC = BTA;
   return 0;
 }
 
-int BLTU (int Rs1, int Rs2, int BTA) {
+int BLTU (int Rs1, int Rs2, int Imm) {
   if ((unsigned)CURRENT_STATE.REGS[Rs1] < (unsigned)CURRENT_STATE.REGS[Rs2])
-    NEXT_STATE.PC = CURRENT_STATE.PC + 4 + BTA;
+    int BTA = CURRENT_STATE.PC + SIGNEXT(Imm << 1, 12);
+    printf(" BTA: %x", BTA);
+    NEXT_STATE.PC = BTA;
   return 0;
 }
 
-int BGEU (int Rs1, int Rs2, int BTA) {
+int BGEU (int Rs1, int Rs2, int Imm) {
   if ((unsigned)CURRENT_STATE.REGS[Rs1] >= (unsigned)CURRENT_STATE.REGS[Rs2])
-    NEXT_STATE.PC = CURRENT_STATE.PC + 4 + BTA;
+    int BTA = CURRENT_STATE.PC + SIGNEXT(Imm << 1, 12);
+    printf(" BTA: %x", BTA);
+    NEXT_STATE.PC = BTA;
   return 0;
 }
 
