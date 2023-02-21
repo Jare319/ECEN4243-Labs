@@ -298,10 +298,12 @@ int b_process(char* i_) {
   for(int i = 0; i < 3; i++) {
     funct3[i] = i_[31-14+i];
   }
+  
   int Rs1 = bchar_to_int(rs1);
   int Rs2 = bchar_to_int(rs2);  
   int Funct3 = bchar_to_int(funct3);
   int Imm = bchar_to_int(imm);
+  Imm = Imm << 1;
   printf ("Opcode = %s\n Rs1 = %d\n Rs2 = %d\n Imm = %d\n Funct3 = %d\n\n",
 	  d_opcode, Rs1, Rs2, Imm, Funct3);
   printf("\n");    
@@ -495,19 +497,20 @@ int u_process(char* i_) {
 
   int Rd = bchar_to_int(rd);
   int Imm = bchar_to_int(imm);
-  printf ("Opcode = %s\n Imm = %d\n Rd = %d\n",
-	  d_opcode, Imm, Rd);
+  int Upimm = Imm << 12;
+  printf ("Opcode = %s\n Upimm = %d\n Rd = %d\n",
+	  d_opcode, Upimm, Rd);
   printf("\n"); 
 
   if(!strcmp(d_opcode,"0110111")) {
     printf("--- This is a LUI instruction. \n");
-    LUI(Rd, Imm);
+    LUI(Rd, Upimm);
     return 0;
   }
 
   if(!strcmp(d_opcode,"0010111")) {
     printf("--- This is a AUIPC instruction. \n");
-    AUIPC(Rd, Imm);
+    AUIPC(Rd, Upimm);
     return 0;
   }
 

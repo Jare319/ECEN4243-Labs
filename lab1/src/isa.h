@@ -195,33 +195,14 @@ int SRAI (int Rd, int Rs1, int Imm) {
 
 // U Instruction
 
-int AUIPC (int Rd, int Imm) {
-  char upimm[32];
-  char *imm = byte_to_binary32(Imm);
-  for (int i = 0; i < 32; i++) {
-    if (i < 20) {
-      upimm[i] = imm[i];
-    } else {
-      upimm[i] = 0;
-    }
-  }
-  int Upimm = bchar_to_int(upimm);
+int AUIPC (int Rd, int Upimm) {
   NEXT_STATE.REGS[Rd] = Upimm + CURRENT_STATE.PC;
   return 0;
 }
 
-int LUI (int Rd, int Imm) {
-  char upimm[33]; upimm[32] = '\0';
-  char *imm = byte_to_binary32(Imm);
-  for (int i = 0; i < 32; i++) {
-    if (i < 20) {
-      upimm[i] = imm[i];
-    } else {
-      upimm[i] = 0;
-    }
-  }
-  int Upimm = bchar_to_int(upimm);
+int LUI (int Rd, int Upimm) {
   NEXT_STATE.REGS[Rd] = Upimm;
+  printf(" Hex: %x\n Int: %i\n\n",Upimm,Upimm);
   return 0;
 }
 
@@ -335,15 +316,13 @@ int AND (int Rd, int Rs1, int Rs2) {
 // B instructions
 
 int BNE (int Rs1, int Rs2, int Imm) {
-  Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] != CURRENT_STATE.REGS[Rs2]) {
-    NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,13));
+    NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
   }
   return 0;
 }
 
 int BEQ (int Rs1, int Rs2, int Imm) {
-  Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] == CURRENT_STATE.REGS[Rs2]) {
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
   }
@@ -351,7 +330,6 @@ int BEQ (int Rs1, int Rs2, int Imm) {
 }
 
 int BLT (int Rs1, int Rs2, int Imm) {
-  Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] < CURRENT_STATE.REGS[Rs2]) {
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
   }
@@ -359,21 +337,18 @@ int BLT (int Rs1, int Rs2, int Imm) {
 }
 
 int BGE (int Rs1, int Rs2, int Imm) {
-  Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] >= CURRENT_STATE.REGS[Rs2])
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
   return 0;
 }
 
 int BLTU (int Rs1, int Rs2, int Imm) {
-  Imm = Imm << 1;
   if ((unsigned)CURRENT_STATE.REGS[Rs1] < (unsigned)CURRENT_STATE.REGS[Rs2])
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
   return 0;
 }
 
 int BGEU (int Rs1, int Rs2, int Imm) {
-  Imm = Imm << 1;
   if ((unsigned)CURRENT_STATE.REGS[Rs1] >= (unsigned)CURRENT_STATE.REGS[Rs2])
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
   return 0;
