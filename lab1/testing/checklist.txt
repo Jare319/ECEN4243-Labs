@@ -1,28 +1,28 @@
 ## Memfile Testing Checklist
 - [X] ADD 
 - [X] ADDI 
-- [ ] AND
+- [X] AND
 - [X] ANDI
 - [X] AUIPC
-- [ ] BEQ
-- [ ] BGE
-- [ ] BGEU
-- [ ] BLT
-- [ ] BLTU
-- [ ] BNE
-- [ ] JAL
-- [ ] JALR
-- [ ] LB
-- [ ] LBU
-- [ ] LH
-- [ ] LHU
-- [ ] LUI
-- [ ] LW
-- [ ] OR
-- [ ] ORI
-- [ ] SB
-- [ ] SH
-- [ ] SLL
+- [X] BEQ
+- [ ] BGE (Failed) 
+- [ ] BGEU (Failed)
+- [ ] BLT (Failed)
+- [ ] BLTU (Failed)
+- [X] BNE
+- [ ] JAL (Failed)
+- [ ] JALR (Infinite loop)
+- [ ] LB (Failed)
+- [ ] LBU (Failed)
+- [ ] LH (Failed)
+- [ ] LHU (Failed)
+- [ ] LUI (Failed)
+- [ ] LW (Failed)
+- [X] OR
+- [X] ORI
+- [ ] SB (Failed)
+- [ ] SH (Failed)
+- [X] SLL
 - [ ] SLLI (Failed)
 - [ ] SLT (Failed)
 - [ ] SLTI (Failed)
@@ -37,3 +37,5 @@
 - [X] XOR
 - [X] XORI
 - [X] ECALL
+Every fail i tested ended up at PC=fail+8
+idk if thats just the fail handler tho
