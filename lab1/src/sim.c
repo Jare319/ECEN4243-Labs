@@ -108,8 +108,8 @@ int r_process(char* i_) {
 
   if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"000") && !strcmp(funct7,"0100000")) {
     printf("--- This is a SUB instruction. \n");
-     SUB(Rd, Rs1, Rs2);
-     return 0;
+    SUB(Rd, Rs1, Rs2);
+    return 0;
   }
 
   if(!strcmp(d_opcode,"0110011") && !strcmp(funct3,"001")) {
