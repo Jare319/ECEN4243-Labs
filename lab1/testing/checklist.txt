@@ -1,0 +1,39 @@
+## Memfile Testing Checklist
+- [X] ADD 
+- [X] ADDI 
+- [ ] AND
+- [X] ANDI
+- [X] AUIPC
+- [ ] BEQ
+- [ ] BGE
+- [ ] BGEU
+- [ ] BLT
+- [ ] BLTU
+- [ ] BNE
+- [ ] JAL
+- [ ] JALR
+- [ ] LB
+- [ ] LBU
+- [ ] LH
+- [ ] LHU
+- [ ] LUI
+- [ ] LW
+- [ ] OR
+- [ ] ORI
+- [ ] SB
+- [ ] SH
+- [ ] SLL
+- [ ] SLLI (Failed)
+- [ ] SLT (Failed)
+- [ ] SLTI (Failed)
+- [X] SLTIU
+- [X] SLTU
+- [ ] SRA (Failed)
+- [ ] SRAI (Failed)
+- [ ] SRL (Failed)
+- [ ] SRLI (Failed)
+- [X] SUB
+- [ ] SW (Failed)
+- [X] XOR
+- [X] XORI
+- [X] ECALL
