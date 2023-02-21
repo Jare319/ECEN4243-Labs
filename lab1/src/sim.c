@@ -303,44 +303,45 @@ int b_process(char* i_) {
   int Rs2 = bchar_to_int(rs2);  
   int Funct3 = bchar_to_int(funct3);
   int Imm = bchar_to_int(imm);
-  printf ("Opcode = %s\n Rs1 = %d\n Rs2 = %d\n Imm = %d\n Funct3 = %d\n\n",
-	  d_opcode, Rs1, Rs2, Imm, Funct3);
+  int BTA = CURRENT_STATE.PC + 4 + SIGNEXT(Imm << 1, 12);
+  printf ("Opcode = %s\n Rs1 = %d\n Rs2 = %d\n Imm = %d\n Funct3 = %d\n BTA = %x\n",
+	  d_opcode, Rs1, Rs2, Imm, Funct3, BTA);
   printf("\n");    
 
   /* This is a Branch if Not Equal Instruction */
   if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"001")) {
     printf("--- This is a BNE instruction. \n");
-    BNE(Rs1, Rs2, Imm);
+    BNE(Rs1, Rs2, BTA);
     return 0;
   }	    
 
   if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"000")) {
     printf("--- This is a BEQ instruction. \n");
-    BEQ(Rs1, Rs2, Imm);
+    BEQ(Rs1, Rs2, BTA);
     return 0;
   }	  
 
   if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"100")) {
     printf("--- This is a BLT instruction. \n");
-    BLT(Rs1, Rs2, Imm);
+    BLT(Rs1, Rs2, BTA);
     return 0;
   }	  
 
   if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"101")) {
     printf("--- This is a BGE instruction. \n");
-    BGE(Rs1, Rs2, Imm);
+    BGE(Rs1, Rs2, BTA);
     return 0;
   }	  
 
   if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"110")) {
     printf("--- This is a BLTU instruction. \n");
-    BLTU(Rs1, Rs2, Imm);
+    BLTU(Rs1, Rs2, BTA);
     return 0;
   }	  
 
   if(!strcmp(d_opcode,"1100011") && !strcmp(funct3,"111")) {
     printf("--- This is a BGEU instruction. \n");
-    BGEU(Rs1, Rs2, Imm);
+    BGEU(Rs1, Rs2, BTA);
     return 0;
   }	  
 
@@ -456,9 +457,8 @@ int j_process(char* i_) {
 
   int Rd = bchar_to_int(rd);
   int Imm = bchar_to_int(imm);
-  int JTA = Imm << 1;
-  JTA = SIGNEXT(JTA, 19);
-  printf ("Opcode = %s\n JTA = %d\n Rd = %d\n\n",
+  int JTA = CURRENT_STATE.PC + 4 + SIGNEXT(Imm << 1, 19);
+  printf ("Opcode = %s\n Imm = %d\n Rd = %d\n JTA = %d\n\n",
 	  d_opcode, JTA, Rd);
   printf("\n");
 
