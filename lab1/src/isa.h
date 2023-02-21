@@ -267,15 +267,28 @@ int XOR (int Rd, int Rs1, int Rs2) {
   return 0;
 }
 
-/* These 2 shift-right statements should be changed to enforce the logical/arithmetic distinction, as it is undertermined otherwise*/
+/* These 2 shift-right statements should be changed to enforce the logical/arithmetic distinction, as it is undertermined (documentation states
+  determined somewhat arbitrarily by compiler) otherwise */
 int SRL (int Rd, int Rs1, int Rs2) {
-  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >> CURRENT_STATE.REGS[Rs2];
+  char *binary = byte_to_binary32(CURRENT_STATE.REGS[Rs1]);
+  for (int j = 0; j < Rs2; j++) {
+    for (int i = 31; i > 0; i--) {
+      binary[i] = binary[i-1];
+    }
+    binary[0] = 0;
+  }
+  NEXT_STATE.REGS[Rd] = bchar_to_int(binary);
   return 0;
 }
 
-/* >>> is the verilog operator for arithmetic shift */
 int SRA (int Rd, int Rs1, int Rs2) {
-  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] >>> CURRENT_STATE.REGS[Rs2];
+  char *binary = byte_to_binary32(CURRENT_STATE.REGS[Rs1]);
+  for (int j = 0; j < Rs2; j++) {
+    for (int i = 31; i > 0; i--) {
+      binary[i] = binary[i-1];
+    }
+  }
+  NEXT_STATE.REGS[Rd] = bchar_to_int(binary);
   return 0;
 }
 
