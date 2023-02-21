@@ -22,6 +22,49 @@
 //
 #define SIGNEXT(v, sb) ((v) | (((v) & (1 << (sb))) ? ~((1 << (sb))-1) : 0))
 
+// Moved these here to allow for compilation and testing. Eventually, these three methods should be moved back to sim.c and the conflicts should be fixed.
+char *byte_to_binary(int x) {
+
+  static char b[9];
+  b[0] = '\0';
+
+  int z;
+  for (z = 128; z > 0; z >>= 1) {
+    strcat(b, ((x & z) == z) ? "1" : "0");
+  }
+
+  return b;
+}
+
+char *byte_to_binary32(int x) {
+
+  static char b[33];
+  b[0] = '\0';
+
+  unsigned int z;
+  for (z = 2147483648; z > 0; z >>= 1) {
+    strcat(b, ((x & z) == z) ? "1" : "0");
+  }
+
+  return b;
+}
+
+int bchar_to_int(char* rsa) {
+
+  int i = 0;
+  int result = 0;
+  int t = 0;
+  while(rsa[i] != '\0')i++;
+  while(i>0)
+    {
+      --i;
+      // printf("%d\n", (rsa[i]-'0')<<t);
+      result += (rsa[i] - '0')<<t;
+      t++;
+    }
+  return result;
+}
+
 // I Instructions
 
 int ADDI (int Rd, int Rs1, int Imm) {
@@ -118,7 +161,7 @@ int LHU (int Rd, int Rs1, int Imm) {
 // Zimm & Funct7 derived from Imm[4:0] and Imm[31:25] respectively, no need to pass as input
 int SLLI (int Rd, int Rs1, int Imm) {
   char *ImmBinary = byte_to_binary32(Imm);
-  char ZimmBinary[6]; ZimmBinary[5] = "\0";
+  char ZimmBinary[6]; ZimmBinary[5] = '\0';
   for (int i = 0; i < 5; i++) {
     ZimmBinary[i] = ImmBinary[31-24+i];
   }
@@ -129,7 +172,7 @@ int SLLI (int Rd, int Rs1, int Imm) {
 
 int SRLI (int Rd, int Rs1, int Imm) {
   char *ImmBinary = byte_to_binary32(Imm);
-  char ZimmBinary[6]; ZimmBinary[5] = "\0";
+  char ZimmBinary[6]; ZimmBinary[5] = '\0';
   for (int i = 0; i < 5; i++) {
     ZimmBinary[i] = ImmBinary[31-24+i];
   }
@@ -140,7 +183,7 @@ int SRLI (int Rd, int Rs1, int Imm) {
 
 int SRAI (int Rd, int Rs1, int Imm) {
   char *ImmBinary = byte_to_binary32(Imm);
-  char ZimmBinary[6]; ZimmBinary[5] = "\0";
+  char ZimmBinary[6]; ZimmBinary[5] = '\0';
   for (int i = 0; i < 5; i++) {
     ZimmBinary[i] = ImmBinary[31-24+i];
   }
@@ -185,9 +228,8 @@ int LUI (int Rd, int Imm) {
 
 // S Instruction
 
-int SB (int Rs1, int Rs2, int Imm) {
+int SB (int Rs1, int Rs2, int Imm, char *mem) {
   char byte[9]; byte[8] = '\0';
-  char *mem = mem_read_32(Rs1+SIGNEXT(Imm,11));
   for (int i = 0; i < 8; i++) {
     byte[i] = mem[31-7+i];
   }
@@ -195,9 +237,8 @@ int SB (int Rs1, int Rs2, int Imm) {
   return 0;
 }
 
-int SH (int Rs1, int Rs2, int Imm) {
+int SH (int Rs1, int Rs2, int Imm, char *mem) {
   char half[17]; half[16] = '\0';
-  char *mem = mem_read_32(Rs1+SIGNEXT(Imm,11));
   for (int i = 0; i < 16; i++) {
     half[i] = mem[31-15+i];
   }
@@ -205,11 +246,10 @@ int SH (int Rs1, int Rs2, int Imm) {
   return 0;
 }
 
-int SW (int Rs1, int Rs2, int Imm) {
+int SW (int Rs1, int Rs2, int Imm, char *mem) {
   char word[33]; word[32] = '\0';
-  char *mem = mem_read_32(Rs1+SIGNEXT(Imm,11));
   for (int i = 0; i < 32; i++) {
-    word[i] = mem[31-7+i];
+    word[i] = mem[i];
   }
   NEXT_STATE.REGS[Rs2] = bchar_to_int(word);
   return 0;
@@ -252,18 +292,7 @@ int SLTU (int Rd, int Rs1, int Rs2) {
 }
 
 int XOR (int Rd, int Rs1, int Rs2) {
-  char rs1[6]=byte_to_binary(Rs1); rs1[5] = '\0';
-  char rs2[6]=byte_to_binary(Rs2); rs2[5] = '\0';
-  char rd[6]; rd[5] = '\0';
-  for (int i = 0; i < 4; i++) {
-    if(rs1[i]!=rs2[i]){
-      rd[i]=1;
-    }
-    else{
-      rd[i]=0;
-    }
-  }
-  NEXT_STATE.REGS[Rd] = bchar_to_int(rd);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] ^ CURRENT_STATE.REGS[Rs2];
   return 0;
 }
 
@@ -293,34 +322,12 @@ int SRA (int Rd, int Rs1, int Rs2) {
 }
 
 int OR (int Rd, int Rs1, int Rs2) {
-  char rs1[6]=byte_to_binary(Rs1); rs1[5] = '\0';
-  char rs2[6]=byte_to_binary(Rs2); rs2[5] = '\0';
-  char rd[6]; rd[5] = '\0';
-  for (int i = 0; i < 4; i++) {
-    if(rs1[i] + rs2[i] > 0){
-      rd[i]=1;
-    }
-    else{
-      rd[i]=0;
-    }
-  }
-  NEXT_STATE.REGS[Rd] = bchar_to_int(rd);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] | CURRENT_STATE.REGS[Rs2];
   return 0;
 }
 
 int AND (int Rd, int Rs1, int Rs2) {
-  char rs1[6]=byte_to_binary(Rs1); rs1[5] = '\0';
-  char rs2[6]=byte_to_binary(Rs2); rs2[5] = '\0';
-  char rd[6]; rd[5] = '\0';
-  for (int i = 0; i < 4; i++) {
-    if(rs1[i] == rs2[i]){
-      rd[i]=1;
-    }
-    else{
-      rd[i]=0;
-    }
-  }
-  NEXT_STATE.REGS[Rd] = bchar_to_int(rd);
+  NEXT_STATE.REGS[Rd] = CURRENT_STATE.REGS[Rs1] & CURRENT_STATE.REGS[Rs2];
   return 0;
 }
 

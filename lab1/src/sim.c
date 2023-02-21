@@ -13,47 +13,7 @@
 #include "shell.h"
 #include "isa.h"
 
-char *byte_to_binary(int x) {
 
-  static char b[9];
-  b[0] = '\0';
-
-  int z;
-  for (z = 128; z > 0; z >>= 1) {
-    strcat(b, ((x & z) == z) ? "1" : "0");
-  }
-
-  return b;
-}
-
-char *byte_to_binary32(int x) {
-
-  static char b[33];
-  b[0] = '\0';
-
-  unsigned int z;
-  for (z = 2147483648; z > 0; z >>= 1) {
-    strcat(b, ((x & z) == z) ? "1" : "0");
-  }
-
-  return b;
-}
-
-int bchar_to_int(char* rsa) {
-
-  int i = 0;
-  int result = 0;
-  int t = 0;
-  while(rsa[i] != '\0')i++;
-  while(i>0)
-    {
-      --i;
-      // printf("%d\n", (rsa[i]-'0')<<t);
-      result += (rsa[i] - '0')<<t;
-      t++;
-    }
-  return result;
-}
 
 int r_process(char* i_) {
 
@@ -422,6 +382,7 @@ int s_process(char* i_) {
   int Rs2 = bchar_to_int(rs2);  
   int Funct3 = bchar_to_int(funct3);
   int Imm = bchar_to_int(imm);
+  char *mem = byte_to_binary32(mem_read_32(Rs1+SIGNEXT(Imm,11)));
   printf ("Opcode = %s\n Rs1 = %d\n Rs2 = %d\n Imm = %d\n Funct3 = %d\n\n",
 	  d_opcode, Rs1, Rs2, Imm, Funct3);
   printf("\n");
@@ -429,19 +390,19 @@ int s_process(char* i_) {
   /* Add store instructions here */ 
   if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"000")) {
    printf("--- This is an SB instruction. \n");
-   SB(Rs1, Rs2, Imm);
+   SB(Rs1, Rs2, Imm, mem);
    return 0;
   }	 
 
   if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"001")) {
    printf("--- This is an SH instruction. \n");
-   SH(Rs1, Rs2, Imm);
+   SH(Rs1, Rs2, Imm, mem);
    return 0;
   }	
 
   if(!strcmp(d_opcode,"0100011") && !strcmp(funct3,"010")) {
    printf("--- This is an SW instruction. \n");
-   SW(Rs1, Rs2, Imm);
+   SW(Rs1, Rs2, Imm, mem);
    return 0;
   }	  
 
@@ -569,9 +530,17 @@ int decode_and_execute(char* i_) {
      CPU_State (NEXT_STATE)
   */
 
-  if((i_[25] == '0') && (i_[26] == '0') &&
+  if(((i_[25] == '0') && (i_[26] == '0') &&
      (i_[27] == '1') && (i_[28] == '0') &&
-     (i_[29] == '0') && (i_[30] == '1') && (i_[31] == '1')) {
+     (i_[29] == '0') && (i_[30] == '1') && (i_[31] == '1')) 
+     ||
+     ((i_[25] == '0') && (i_[26] == '0') &&
+     (i_[27] == '0') && (i_[28] == '0') &&
+     (i_[29] == '0') && (i_[30] == '1') && (i_[31] == '1')) 
+     ||
+     ((i_[25] == '1') && (i_[26] == '1') &&
+     (i_[27] == '0') && (i_[28] == '0') &&
+     (i_[29] == '1') && (i_[30] == '1') && (i_[31] == '1'))) {
     printf("- This is an Immediate Type Instruction. \n");
     i_process(i_);
   }
@@ -599,9 +568,13 @@ int decode_and_execute(char* i_) {
     printf("- This is a J Type Instruction. \n");
     j_process(i_);
   }
-  if((i_[25] == '0') && (i_[26] == '0') &&
+  if(((i_[25] == '0') && (i_[26] == '1') &&
      (i_[27] == '1') && (i_[28] == '0') &&
-     (i_[29] == '1') && (i_[30] == '1') && (i_[31] == '1')) {
+     (i_[29] == '1') && (i_[30] == '1') && (i_[31] == '1'))
+     ||
+     ((i_[25] == '0') && (i_[26] == '0') &&
+     (i_[27] == '1') && (i_[28] == '0') &&
+     (i_[29] == '1') && (i_[30] == '1') && (i_[31] == '1'))) {
     printf("- This is a U Type Instruction. \n");
     u_process(i_);
   }  
@@ -631,12 +604,17 @@ void process_instruction() {
   */   
 
   unsigned int inst_word = mem_read_32(CURRENT_STATE.PC);
-  printf("The instruction is: %x \n", inst_word);
-  printf("33222222222211111111110000000000\n");
-  printf("10987654321098765432109876543210\n");
-  printf("--------------------------------\n");
-  printf("%s \n", byte_to_binary32(inst_word));
-  printf("\n");
+  if (inst_word == 0) {
+    printf("An error occured in the preceeding instructions...\n");
+    inst_word = 115;
+  } else {
+    printf("The instruction is: %x \n", inst_word);
+    printf("33222222222211111111110000000000\n");
+    printf("10987654321098765432109876543210\n");
+    printf("--------------------------------\n");
+    printf("%s \n", byte_to_binary32(inst_word));
+    printf("\n");
+  }
   decode_and_execute(byte_to_binary32(inst_word));
 
   NEXT_STATE.PC += 4;
