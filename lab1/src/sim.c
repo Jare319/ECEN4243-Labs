@@ -457,13 +457,15 @@ int j_process(char* i_) {
 
   int Rd = bchar_to_int(rd);
   int Imm = bchar_to_int(imm);
-  printf ("Opcode = %s\n Imm = %d\n Rd = %d\n",
-	  d_opcode, Imm, Rd);
+  int JTA = Imm << 1;
+  JTA = SIGNEXT(JTA, 19);
+  printf ("Opcode = %s\n JTA = %d\n Rd = %d\n\n",
+	  d_opcode, JTA, Rd);
   printf("\n");
 
   if(!strcmp(d_opcode,"1101111")) {
     printf("--- This is a JAL instruction. \n");
-    JAL(Rd, Imm);
+    JAL(Rd, JTA);
     return 0;
   }
 

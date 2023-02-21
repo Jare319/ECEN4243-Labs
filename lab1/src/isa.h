@@ -356,8 +356,8 @@ int BGEU (int Rs1, int Rs2, int Imm) {
 
 
 // J instruction
-int JAL (int Rd, int Imm) {
-  NEXT_STATE.PC = CURRENT_STATE.PC + SIGNEXT(Imm, 11);
+int JAL (int Rd, int JTA) {
+  NEXT_STATE.PC = CURRENT_STATE.PC + JTA;
   NEXT_STATE.REGS[Rd] = CURRENT_STATE.PC + 4;
   return 0;
 }
