@@ -96,7 +96,7 @@ int LW (int Rd, int Rs1, int Imm) {
 }
 
 int LBU (int Rd, int Rs1, int Imm) {
-  char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm,11)));
+  char *word = byte_to_binary32(mem_read_32(Rs1 + SIGNEXT(Imm, 11)));
   char byte[9]; byte[8] = '\0';
   for (int i = 0; i < 8; i++) {
     byte[i] = word[i];
