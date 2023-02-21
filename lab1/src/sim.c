@@ -303,8 +303,8 @@ int b_process(char* i_) {
   int Rs2 = bchar_to_int(rs2);  
   int Funct3 = bchar_to_int(funct3);
   int Imm = bchar_to_int(imm);
-  printf ("Opcode = %s\n Rs1 = %d\n Rs2 = %d\n Funct3 = %d\n Imm = %s\n\n",
-	  d_opcode, Rs1, Rs2, Funct3, Imm);
+  printf ("Opcode = %s\n Rs1 = %d\n Rs2 = %d\n Imm = %d\n Funct3 = %d\n\n",
+	  d_opcode, Rs1, Rs2, Imm, Funct3);
   printf("\n");    
 
   /* This is a Branch if Not Equal Instruction */
