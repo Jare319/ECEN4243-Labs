@@ -335,16 +335,14 @@ int AND (int Rd, int Rs1, int Rs2) {
 // B instructions
 
 int BNE (int Rs1, int Rs2, int Imm) {
-  int cur = 0;
   Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] != CURRENT_STATE.REGS[Rs2]) {
-    NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
+    NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,13));
   }
   return 0;
 }
 
 int BEQ (int Rs1, int Rs2, int Imm) {
-  int cur = 0;
   Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] == CURRENT_STATE.REGS[Rs2]) {
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
@@ -353,7 +351,6 @@ int BEQ (int Rs1, int Rs2, int Imm) {
 }
 
 int BLT (int Rs1, int Rs2, int Imm) {
-  int cur = 0;
   Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] < CURRENT_STATE.REGS[Rs2]) {
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
@@ -362,7 +359,6 @@ int BLT (int Rs1, int Rs2, int Imm) {
 }
 
 int BGE (int Rs1, int Rs2, int Imm) {
-  int cur = 0;
   Imm = Imm << 1;
   if (CURRENT_STATE.REGS[Rs1] >= CURRENT_STATE.REGS[Rs2])
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
@@ -370,7 +366,6 @@ int BGE (int Rs1, int Rs2, int Imm) {
 }
 
 int BLTU (int Rs1, int Rs2, int Imm) {
-  int cur = 0;
   Imm = Imm << 1;
   if ((unsigned)CURRENT_STATE.REGS[Rs1] < (unsigned)CURRENT_STATE.REGS[Rs2])
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
@@ -378,7 +373,6 @@ int BLTU (int Rs1, int Rs2, int Imm) {
 }
 
 int BGEU (int Rs1, int Rs2, int Imm) {
-  int cur = 0;
   Imm = Imm << 1;
   if ((unsigned)CURRENT_STATE.REGS[Rs1] >= (unsigned)CURRENT_STATE.REGS[Rs2])
     NEXT_STATE.PC = (CURRENT_STATE.PC) + (SIGNEXT(Imm,12));
