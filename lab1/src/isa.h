@@ -343,26 +343,29 @@ int BLT (int Rs1, int Rs2, int Imm) {
 }
 
 int BGE (int Rs1, int Rs2, int Imm) {
-  if (CURRENT_STATE.REGS[Rs1] >= CURRENT_STATE.REGS[Rs2])
+  if (CURRENT_STATE.REGS[Rs1] >= CURRENT_STATE.REGS[Rs2]) {
     int BTA = CURRENT_STATE.PC + SIGNEXT(Imm << 1, 12);
     printf(" BTA: %x", BTA);
     NEXT_STATE.PC = BTA;
+  }
   return 0;
 }
 
 int BLTU (int Rs1, int Rs2, int Imm) {
-  if ((unsigned)CURRENT_STATE.REGS[Rs1] < (unsigned)CURRENT_STATE.REGS[Rs2])
+  if ((unsigned)CURRENT_STATE.REGS[Rs1] < (unsigned)CURRENT_STATE.REGS[Rs2]) {
     int BTA = CURRENT_STATE.PC + SIGNEXT(Imm << 1, 12);
     printf(" BTA: %x", BTA);
     NEXT_STATE.PC = BTA;
+  }
   return 0;
 }
 
 int BGEU (int Rs1, int Rs2, int Imm) {
-  if ((unsigned)CURRENT_STATE.REGS[Rs1] >= (unsigned)CURRENT_STATE.REGS[Rs2])
+  if ((unsigned)CURRENT_STATE.REGS[Rs1] >= (unsigned)CURRENT_STATE.REGS[Rs2]) {
     int BTA = CURRENT_STATE.PC + SIGNEXT(Imm << 1, 12);
     printf(" BTA: %x", BTA);
     NEXT_STATE.PC = BTA;
+  }
   return 0;
 }
 
