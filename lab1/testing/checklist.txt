@@ -6,12 +6,12 @@
 - [X] AUIPC
 - [X] BEQ
 - [ ] BGE (Failed) 
-- [ ] BGEU (Failed)
+- [X] BGEU
 - [ ] BLT (Failed)
 - [ ] BLTU (Failed)
 - [X] BNE
 - [ ] JAL (Failed)
-- [ ] JALR (Infinite loop)
+- [ ] JALR (Failed)
 - [ ] LB (Failed)
 - [ ] LBU (Failed)
 - [ ] LH (Failed)

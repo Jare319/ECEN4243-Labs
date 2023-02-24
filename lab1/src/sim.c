@@ -303,7 +303,7 @@ int b_process(char* i_) {
   int Rs2 = bchar_to_int(rs2);  
   int Funct3 = bchar_to_int(funct3);
   int Imm = bchar_to_int(imm);
-  int BTA = CURRENT_STATE.PC + 4 + SIGNEXT(Imm << 1, 12);
+  int BTA = CURRENT_STATE.PC - 4 + SIGNEXT(Imm << 1, 12);
   printf ("Opcode = %s\n Rs1 = %d\n Rs2 = %d\n Imm = %d\n Funct3 = %d\n BTA = %x\n",
 	  d_opcode, Rs1, Rs2, Imm, Funct3, BTA);
   printf("\n");    
@@ -457,7 +457,7 @@ int j_process(char* i_) {
 
   int Rd = bchar_to_int(rd);
   int Imm = bchar_to_int(imm);
-  int JTA = CURRENT_STATE.PC + 4 + SIGNEXT(Imm << 1, 19);
+  int JTA = CURRENT_STATE.PC - 4 + SIGNEXT(Imm << 1, 19);
   printf ("Opcode = %s\n Imm = %d\n Rd = %d\n JTA = %d\n\n",
 	  d_opcode, JTA, Rd);
   printf("\n");
