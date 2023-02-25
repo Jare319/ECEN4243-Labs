@@ -8,7 +8,7 @@
 - [ ] BGE (Failed) 
 - [X] BGEU
 - [ ] BLT (Failed)
-- [ ] BLTU (Failed)
+- [X] BLTU 
 - [X] BNE
 - [ ] JAL (Failed)
 - [ ] JALR (Failed)
