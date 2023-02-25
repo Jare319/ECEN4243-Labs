@@ -165,7 +165,8 @@ int i_process(char* i_) {
 
   /* This is an Add Immediate Instruciton */
   if(!strcmp(d_opcode,"0010011") && !strcmp(funct3,"000")) {
-    printf("--- This is an ADDI instruction. \n\n");
+    printf("--- This is an ADDI instruction. \n");
+    printf("\n");
     ADDI(Rd, Rs1, Imm);
     return 0;
   }	  
