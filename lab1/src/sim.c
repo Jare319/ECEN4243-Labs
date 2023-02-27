@@ -457,10 +457,10 @@ int j_process(char* i_) {
     
 
   int Rd = bchar_to_int(rd);
-  int Imm = bchar_to_int(imm);
-  int JTA = CURRENT_STATE.PC - 4 + SIGNEXT(Imm << 1, 19);
-  printf ("Opcode = %s\n Imm = %d\n Rd = %d\n JTA = %d\n\n",
-	  d_opcode, JTA, Rd);
+  int32_t Imm = bchar_to_int(imm);
+  int32_t JTA = CURRENT_STATE.PC - 4 + SIGNEXT(Imm << 1, 19);
+  printf ("Opcode = %s\n Imm = %d\n Rd = %d\n JTA = %x\n",
+	  d_opcode, Imm, Rd, JTA);
   printf("\n");
 
   if(!strcmp(d_opcode,"1101111")) {
@@ -468,7 +468,6 @@ int j_process(char* i_) {
     JAL(Rd, JTA);
     return 0;
   }
-
   return 1;
 
 }
@@ -498,7 +497,7 @@ int u_process(char* i_) {
   }
 
   int Rd = bchar_to_int(rd);
-  int Imm = bchar_to_int(imm);
+  int32_t Imm = bchar_to_int(imm);
   int Upimm = Imm << 12;
   printf ("Opcode = %s\n Upimm = %d\n Rd = %d\n",
 	  d_opcode, Upimm, Rd);
