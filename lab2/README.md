@@ -14,22 +14,23 @@ to address 100 and print "Simulation Succeeded" to your transcript window
 
 Should we add RV32i instructions?
 Instructions to Add (16?)
-xor
-sll
-srl
-bne
-lui
-sra
-lbu
-blt
-bltu
-bge
-bgeu
-jalr
-auipc
-sb
-slli
-srai
+[X] xor
+[X] xori
+[ ] sll
+[ ] srl
+[ ] bne
+[ ] lui
+[ ] sra
+[ ] lbu
+[ ] blt
+[ ] bltu
+[ ] bge
+[ ] bgeu
+[ ] jalr
+[ ] auipc
+[ ] sb
+[ ] slli
+[ ] srai
 
 
 
