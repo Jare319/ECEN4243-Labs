@@ -16,7 +16,7 @@
 # ** Warning: (vlib-34) Library already exists at "work".
 # Errors: 0, Warnings: 1
 # Model Technology ModelSim SE-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
-# Start time: 21:25:38 on Mar 06,2023
+# Start time: 00:49:32 on Mar 08,2023
 # vlog -reportprogress 300 riscv_single.sv 
 # -- Compiling module testbench
 # -- Compiling module riscvsingle
@@ -39,13 +39,13 @@
 # Top level modules:
 # 	testbench
 # 	flopenr
-# End time: 21:25:38 on Mar 06,2023, Elapsed time: 0:00:00
+# End time: 00:49:32 on Mar 08,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 21:25:38 on Mar 06,2023
+# Start time: 00:49:32 on Mar 08,2023
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
-# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=64, type=RAM at location riscv_single.sv:300
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=64, type=RAM at location riscv_single.sv:305
 # Loading sv_std.std
 # Loading work.testbench(fast)
 # Loading work.top(fast)
@@ -67,9 +67,9 @@
 # ** Error: (vsim-8357) Internal debugDB error id:ct1  ret:1 table context_tbl already exists
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: jstine  Hostname: sakuya.ecen.okstate.edu  ProcessID: 31237
-#           Attempting to use alternate WLF file "./wlftss831i".
+#           Attempting to use alternate WLF file "./wlftebcc83".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftss831i
+#           Using alternate file: ./wlftebcc83
 # Debug data file does not match loaded design.
 # Debug data file does not match loaded design.
 # ** Error: Could not open the database because of the following problem accessing the required debug information:

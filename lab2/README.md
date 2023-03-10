@@ -16,8 +16,9 @@ Should we add RV32i instructions?
 Instructions to Add (16?)
 [X] xor
 [X] xori
-[ ] sll
-[ ] srl
+[X] sll
+[X] srl
+[X] srli
 [ ] bne
 [ ] lui
 [ ] sra
@@ -29,7 +30,7 @@ Instructions to Add (16?)
 [ ] jalr
 [ ] auipc
 [ ] sb
-[ ] slli
+[X] slli
 [ ] srai
 
 
