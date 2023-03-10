@@ -129,64 +129,64 @@ module maindec (input  logic [6:0] op,
    assign {RegWrite, ImmSrc, ALUSrc, MemWrite,
 	   ResultSrc, Branch, ALUOp, Jump} = controls;
    
-   always_comb
-     case(op)
-       // RegWrite_ImmSrc_ALUSrc_MemWrite_ResultSrc_Branch_ALUOp_Jump
-       7'b0000011: controls = 11'b1_00_1_0_01_0_00_0; // lw
-       7'b0100011: controls = 11'b0_01_1_1_00_0_00_0; // sw
-       7'b0110011: controls = 11'b1_xx_0_0_00_0_10_0; // R–type
-       7'b1100011: controls = 11'b0_10_0_0_00_1_01_0; // beq
-       7'b0010011: controls = 11'b1_00_1_0_00_0_10_0; // I–type ALU
-       7'b1101111: controls = 11'b1_11_0_0_10_0_00_1; // jal
-       default: controls = 11'bx_xx_x_x_xx_x_xx_x; // ???
-     endcase // case (op)
+  always_comb
+    case(op)
+      // RegWrite_ImmSrc_ALUSrc_MemWrite_ResultSrc_Branch_ALUOp_Jump
+      7'b0000011: controls = 11'b1_00_1_0_01_0_00_0; // lw
+      7'b0100011: controls = 11'b0_01_1_1_00_0_00_0; // sw
+      7'b0110011: controls = 11'b1_xx_0_0_00_0_10_0; // R–type
+      7'b1100011: controls = 11'b0_10_0_0_00_1_01_0; // beq
+      7'b0010011: controls = 11'b1_00_1_0_00_0_10_0; // I–type ALU
+      7'b1101111: controls = 11'b1_11_0_0_10_0_00_1; // jal
+      default: controls = 11'bx_xx_x_x_xx_x_xx_x; // ???
+    endcase // case (op)
    
 endmodule // maindec
 
 module aludec (input  logic       opb5,
-	       input  logic [2:0] funct3,
-	       input  logic 	  funct7b5,
-	       input  logic [1:0] ALUOp,
-	       output logic [3:0] ALUControl);
+	      input  logic [2:0] funct3,
+	      input  logic 	  funct7b5,
+	      input  logic [1:0] ALUOp,
+	      output logic [3:0] ALUControl);
    
    logic 			  RtypeSub;
    
-   assign RtypeSub = funct7b5 & opb5; // TRUE for R–type subtract
-   always_comb
-     case(ALUOp)
-       2'b00: ALUControl = 4'b0000; // addition
-       2'b01: ALUControl = 4'b0001; // subtraction
-       default: case(funct3) // R–type or I–type ALU
-		  3'b000: if (RtypeSub)
-		    ALUControl = 4'b0001; // sub
-		  else
-		    ALUControl = 4'b0000; // add, addi
-      3'b001: ALUControl = 4'b0110; // sll, slli
-      3'b101: if (funct7b5)
-        ALUControl = 4'b0111; // sra, srai
-      else
-        ALUControl = 4'b1000; // srl, srli
-		  3'b010: ALUControl = 4'b0101; // slt, slti
-      3'b100: ALUControl = 4'b0100; // xor, xori
-		  3'b110: ALUControl = 4'b0011; // or, ori
-		  3'b111: ALUControl = 4'b0010; // and, andi
+  assign RtypeSub = funct7b5 & opb5; // TRUE for R–type subtract
+  always_comb
+    case(ALUOp)
+      2'b00: ALUControl = 4'b0000; // addition
+      2'b01: ALUControl = 4'b0001; // subtraction
+      default: case(funct3) // R–type or I–type ALU
+		    3'b000: if (RtypeSub)
+		      ALUControl = 4'b0001; // sub
+		    else
+		      ALUControl = 4'b0000; // add, addi
+        3'b001: ALUControl = 4'b0110; // sll, slli
+        3'b101: if (funct7b5)
+          ALUControl = 4'b0111; // sra, srai
+        else
+          ALUControl = 4'b1000; // srl, srli
+		    3'b010: ALUControl = 4'b0101; // slt, slti
+        3'b100: ALUControl = 4'b0100; // xor, xori
+		    3'b110: ALUControl = 4'b0011; // or, ori
+		    3'b111: ALUControl = 4'b0010; // and, andi
 		  default: ALUControl = 4'bxxxx; // ???
-		endcase // case (funct3)       
-     endcase // case (ALUOp)
+		  endcase // case (funct3)       
+    endcase // case (ALUOp)
    
 endmodule // aludec
 
 module datapath (input  logic        clk, reset,
-		 input  logic [1:0]  ResultSrc,
-		 input  logic 	     PCSrc, ALUSrc,
-		 input  logic 	     RegWrite,
-		 input  logic [1:0]  ImmSrc,
-		 input  logic [3:0]  ALUControl,
-		 output logic 	     Zero,
-		 output logic [31:0] PC,
-		 input  logic [31:0] Instr,
-		 output logic [31:0] ALUResult, WriteData,
-		 input  logic [31:0] ReadData);
+    input  logic [1:0]  ResultSrc,
+		input  logic 	     PCSrc, ALUSrc,
+		input  logic 	     RegWrite,
+		input  logic [1:0]  ImmSrc,
+		input  logic [3:0]  ALUControl,
+		output logic 	     Zero,
+		output logic [31:0] PC,
+		input  logic [31:0] Instr,
+		output logic [31:0] ALUResult, WriteData,
+		input  logic [31:0] ReadData);
    
    logic [31:0] 		     PCNext, PCPlus4, PCTarget;
    logic [31:0] 		     ImmExt;
