@@ -315,7 +315,7 @@ module alu (input  logic [31:0] a, b,
             output logic [31:0] result,
             output logic 	zero, v, n, c);
 
-   logic [31:0] 	       condinvb, sum;
+   logic [32:0] 	       condinvb, sum;
    logic 		       v;              // overflow
    logic 		       isAddSub;       // true when is add or subtract operation
 
@@ -326,8 +326,8 @@ module alu (input  logic [31:0] a, b,
 
    always_comb
      case (alucontrol)
-       4'b0000:  result = sum;          // add
-       4'b0001:  result = sum;          // subtract
+       4'b0000:  result = sum[31:0];          // add
+       4'b0001:  result = sum[31:0];          // subtract
        4'b0010:  result = a & b;        // and
        4'b0011:  result = a | b;        // or
        4'b0100:  result = a ^ b;        // xor
@@ -342,7 +342,7 @@ module alu (input  logic [31:0] a, b,
    assign zero = (result == 32'b0);
    assign v = ~(alucontrol[0] ^ a[31] ^ b[31]) & (a[31] ^ sum[31]) & isAddSub;
    assign n = result[31];
-   assign c =
+   assign c = sum[32];
    
 endmodule // alu
 
