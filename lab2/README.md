@@ -24,6 +24,9 @@ Instructions to Add (16?)
 [ ] lui
 [ ] sra
 [ ] lbu
+[ ] lb
+[ ] lh
+[ ] lhu
 [ ] blt
 [ ] bltu
 [ ] bge
@@ -31,6 +34,9 @@ Instructions to Add (16?)
 [ ] jalr
 [ ] auipc
 [ ] sb
+[ ] sh
+[ ] sltiu
+[ ] sltu
 [X] slli
 [ ] srai
 
