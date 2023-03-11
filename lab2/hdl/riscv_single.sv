@@ -40,7 +40,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../riscvtest/shifts-test.memfile"};
+        memfilename = {"../riscvtest/blt-test.memfile"};
         $readmemh(memfilename, dut.imem.RAM);
      end
 
@@ -79,7 +79,7 @@ module riscvsingle (input  logic        clk, reset,
 		    output logic [31:0] ALUResult, WriteData,
 		    input  logic [31:0] ReadData);
    
-   logic 				ALUSrc, RegWrite, Jump, Zero;
+   logic 				ALUSrc, RegWrite, Jump, Zero, V, N, C;
    logic [1:0] 				ResultSrc, ImmSrc;
    logic [3:0] 				ALUControl;
    
@@ -90,7 +90,7 @@ module riscvsingle (input  logic        clk, reset,
    datapath dp (clk, reset, ResultSrc, PCSrc,
 		ALUSrc, RegWrite,
 		ImmSrc, ALUControl,
-		Zero, PC, Instr,
+		Zero, V, N, C, PC, Instr,
 		ALUResult, WriteData, ReadData);
    
 endmodule // riscvsingle
@@ -135,7 +135,7 @@ module maindec (input  logic [6:0] op,
        7'b0000011: controls = 11'b1_00_1_0_01_0_00_0; // lw
        7'b0100011: controls = 11'b0_01_1_1_00_0_00_0; // sw
        7'b0110011: controls = 11'b1_xx_0_0_00_0_10_0; // R–type
-       7'b1100011: controls = 11'b0_10_0_0_00_1_01_0; // beq
+       7'b1100011: controls = 11'b0_10_0_0_00_1_01_0; // beq/bne
        7'b0010011: controls = 11'b1_00_1_0_00_0_10_0; // I–type ALU
        7'b1101111: controls = 11'b1_11_0_0_10_0_00_1; // jal
        default: controls = 11'bx_xx_x_x_xx_x_xx_x; // ???
@@ -182,7 +182,7 @@ module datapath (input  logic        clk, reset,
 		 input  logic 	     RegWrite,
 		 input  logic [1:0]  ImmSrc,
 		 input  logic [3:0]  ALUControl,
-		 output logic 	     Zero,
+		 output logic 	     Zero, V, N, C,
 		 output logic [31:0] PC,
 		 input  logic [31:0] Instr,
 		 output logic [31:0] ALUResult, WriteData,
@@ -204,7 +204,7 @@ module datapath (input  logic        clk, reset,
    extend  ext (Instr[31:7], ImmSrc, ImmExt);
    // ALU logic
    mux2 #(32)  srcbmux (WriteData, ImmExt, ALUSrc, SrcB);
-   alu  alu (SrcA, SrcB, ALUControl, ALUResult, Zero);
+   alu  alu (SrcA, SrcB, ALUControl, ALUResult, Zero, v, n, c);
    mux3 #(32) resultmux (ALUResult, ReadData, PCPlus4,ResultSrc, Result);
 
 endmodule // datapath
@@ -313,7 +313,7 @@ endmodule // dmem
 module alu (input  logic [31:0] a, b,
             input  logic [3:0] 	alucontrol,
             output logic [31:0] result,
-            output logic 	zero);
+            output logic 	zero, v, n, c);
 
    logic [31:0] 	       condinvb, sum;
    logic 		       v;              // overflow
@@ -341,6 +341,8 @@ module alu (input  logic [31:0] a, b,
 
    assign zero = (result == 32'b0);
    assign v = ~(alucontrol[0] ^ a[31] ^ b[31]) & (a[31] ^ sum[31]) & isAddSub;
+   assign n = result[31];
+   assign c =
    
 endmodule // alu
 

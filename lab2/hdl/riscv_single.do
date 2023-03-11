@@ -65,6 +65,8 @@ add wave -hex /testbench/dut/imem/*
 add wave -noupdate -divider -height 32 "Register File"
 add wave -hex /testbench/dut/rv32single/dp/rf/*
 add wave -hex /testbench/dut/rv32single/dp/rf/rf
+add wave -noupdate -divider -height 32 "ALU"
+add wave -hex /testbench/dut/rv32single/dp/alu/*
 
 
 -- Set Wave Output Items 
