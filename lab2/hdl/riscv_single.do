@@ -60,6 +60,7 @@ add wave -noupdate -divider -height 32 "ALU Decoder"
 add wave -hex /testbench/dut/rv32single/c/ad/*
 add wave -noupdate -divider -height 32 "Data Memory"
 add wave -hex /testbench/dut/dmem/*
+add wave -hex /testbench/dut/dmem/RAM
 add wave -noupdate -divider -height 32 "Instruction Memory"
 add wave -hex /testbench/dut/imem/*
 add wave -noupdate -divider -height 32 "Register File"

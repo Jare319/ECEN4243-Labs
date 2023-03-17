@@ -21,18 +21,18 @@ Instructions to Add (16?)
 [X] srli
 [ ] bne ?
 [ ] beq ?
-[ ] lui
+[ ] lui ?
 [ ] sra ?
-[ ] lbu
-[ ] lb
-[ ] lh
-[ ] lhu
+[ ] lbu ?
+[ ] lb 
+[ ] lh 
+[ ] lhu ?
 [X] blt
 [ ] bltu ?
 [ ] bge ?
 [ ] bgeu ?
-[ ] jalr
-[ ] auipc
+[ ] jalr ?
+[ ] auipc ?
 [ ] sb
 [ ] sh
 [ ] sltiu ?
