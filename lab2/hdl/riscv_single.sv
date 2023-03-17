@@ -83,7 +83,7 @@ module riscvsingle (input  logic        clk, reset,
    logic [1:0] 				ResultSrc, ImmSrc;
    logic [3:0] 				ALUControl;
    
-   controller c (Instr[6:0], Instr[14:12], Instr[30], Zero,
+   controller c (Instr[6:0], Instr[14:12], Instr[30], Zero, V, N, C,
 		 ResultSrc, MemWrite, PCSrc,
 		 ALUSrc, RegWrite, Jump,
 		 ImmSrc, ALUControl);
@@ -98,7 +98,7 @@ endmodule // riscvsingle
 module controller (input  logic [6:0] op,
 		   input  logic [2:0] funct3,
 		   input  logic       funct7b5,
-		   input  logic       Zero,
+		   input  logic       Zero, V, N, C,
 		   output logic [1:0] ResultSrc,
 		   output logic       MemWrite,
 		   output logic       PCSrc, ALUSrc,
@@ -107,12 +107,22 @@ module controller (input  logic [6:0] op,
 		   output logic [3:0] ALUControl);
    
    logic [1:0] 			      ALUOp;
-   logic 			      Branch;
+   logic 			      Branch, Flags;
+   
    
    maindec md (op, ResultSrc, MemWrite, Branch,
 	       ALUSrc, RegWrite, Jump, ImmSrc, ALUOp);
    aludec ad (op[5], funct3, funct7b5, ALUOp, ALUControl);
-   assign PCSrc = Branch & (Zero ^ funct3[0]) | Jump;
+   always_comb
+    case(funct3)
+      3'b000 | 3'b001: Flags = (Zero ^ funct3[0]) | Jump;
+      3'b100: Flags = N ^ V;
+      3'b101: Flags = ~(N ^ V);
+      3'b110: Flags =  ~C;
+      3'b111: Flags = C;
+      default: Flags = 1'b0;
+    endcase
+    assign PCSrc = Branch & Flags;
    
 endmodule // controller
 
@@ -204,7 +214,7 @@ module datapath (input  logic        clk, reset,
    extend  ext (Instr[31:7], ImmSrc, ImmExt);
    // ALU logic
    mux2 #(32)  srcbmux (WriteData, ImmExt, ALUSrc, SrcB);
-   alu  alu (SrcA, SrcB, ALUControl, ALUResult, Zero, v, n, c);
+   alu  alu (SrcA, SrcB, ALUControl, ALUResult, Zero, V, N, C);
    mux3 #(32) resultmux (ALUResult, ReadData, PCPlus4,ResultSrc, Result);
 
 endmodule // datapath
@@ -316,7 +326,6 @@ module alu (input  logic [31:0] a, b,
             output logic 	zero, v, n, c);
 
    logic [32:0] 	       condinvb, sum;
-   logic 		       v;              // overflow
    logic 		       isAddSub;       // true when is add or subtract operation
 
    assign condinvb = alucontrol[0] ? ~b : b;

@@ -19,26 +19,26 @@ Instructions to Add (16?)
 [X] sll
 [X] srl
 [X] srli
-[X] bne
-[X] beq
+[ ] bne ?
+[ ] beq ?
 [ ] lui
-[ ] sra
+[ ] sra ?
 [ ] lbu
 [ ] lb
 [ ] lh
 [ ] lhu
-[ ] blt
-[ ] bltu
-[ ] bge
-[ ] bgeu
+[X] blt
+[ ] bltu ?
+[ ] bge ?
+[ ] bgeu ?
 [ ] jalr
 [ ] auipc
 [ ] sb
 [ ] sh
-[ ] sltiu
-[ ] sltu
+[ ] sltiu ?
+[ ] sltu ?
 [X] slli
-[ ] srai
+[ ] srai ?
 
 
 
