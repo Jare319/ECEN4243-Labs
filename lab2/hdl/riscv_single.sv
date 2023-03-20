@@ -40,7 +40,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../riscvtest/blt-test.memfile"};
+        memfilename = {"../riscvtest/beq-test.memfile"};
         $readmemh(memfilename, dut.imem.RAM);
      end
 
@@ -115,7 +115,8 @@ module controller (input  logic [6:0] op,
    aludec ad (op[5], funct3, funct7b5, ALUOp, ALUControl);
    always_comb
     case(funct3)
-      3'b000 | 3'b001: Flags = (Zero ^ funct3[0]) | Jump;
+      3'b000: Flags = (Zero ^ funct3[0]) | Jump; // BEQ
+      3'b001: Flags = (Zero ^ funct3[0]) | Jump; // BNE
       3'b100: Flags = N ^ V;
       3'b101: Flags = ~(N ^ V);
       3'b110: Flags =  ~C;
