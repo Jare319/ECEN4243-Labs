@@ -40,6 +40,7 @@ R0
 R0
 R0
 R0
+R0
 !s11f MIXED_VERSIONS
 R0
 13
@@ -72,10 +73,10 @@ n@_opt1
 Z6 OL;O;2021.1;73
 R1
 T_opt2
-!s110 1679282172
-Vj42``7:4F1_3ZNAWmH54z3
+!s110 1679283472
+V[?P=DS4@JL_aYCF6VcL4?3
 R2
-=1-f01faf1f2814-6417cffc-67-f78
+=1-f01faf1f2814-6417d510-112-36f0
 R3
 R4
 R5
@@ -83,13 +84,13 @@ n@_opt2
 R6
 vadder
 Z7 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z8 !s110 1679282171
+Z8 !s110 1679283471
 !i10b 1
 !s100 UTH5BnbQdzVhPcMkc?Vh?1
 I;J=kjnX;VUgzgX[>Q=Wz`2
 S1
 Z9 dC:/Users/Admin/Desktop/ecen4243S23-main/ECEN4243-Labs/lab2/hdl
-Z10 w1679281588
+Z10 w1679283460
 Z11 8riscv_single.sv
 Z12 Friscv_single.sv
 !i122 0
@@ -99,7 +100,7 @@ Z14 OL;L;2021.1;73
 r1
 !s85 0
 31
-Z15 !s108 1679282171.000000
+Z15 !s108 1679283471.000000
 Z16 !s107 riscv_single.sv|
 Z17 !s90 -reportprogress|300|riscv_single.sv|
 !i113 0
@@ -445,8 +446,8 @@ vtestbench
 R7
 R8
 !i10b 1
-!s100 h1gV_S=d<g^U0j2ClPlQ53
-I<Tl85hJHz>eN3S@E`[Mmi2
+!s100 >nG=YdFa_7^[n^b7]U`Jg2
+IBU?;K=ld89fniNKPDTnnX3
 S1
 R9
 R10

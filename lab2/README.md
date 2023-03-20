@@ -28,7 +28,7 @@ Instructions to Add (16?)
 [ ] lh 
 [ ] lhu 
 [X] blt
-[ ] bltu ?
+[ ] bltu 
 [X] bge 
 [X] bgeu
 [X] jalr 
