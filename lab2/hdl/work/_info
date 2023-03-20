@@ -27,6 +27,23 @@ R0
 R0
 R0
 R0
+<<<<<<< HEAD
+=======
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
+>>>>>>> 36c62dc7e4cab9c342c9696df47db3780a839ebf
 !s11f MIXED_VERSIONS
 R0
 13
@@ -59,10 +76,17 @@ n@_opt1
 Z6 OL;O;2021.1;73
 R1
 T_opt2
+<<<<<<< HEAD
 !s110 1679343142
 V:[WAk9d]c6NGA4=a3e3eC1
 R2
 =1-d83bbf62bb5f-6418be25-34b-2ffc
+=======
+!s110 1679283472
+V[?P=DS4@JL_aYCF6VcL4?3
+R2
+=1-f01faf1f2814-6417d510-112-36f0
+>>>>>>> 36c62dc7e4cab9c342c9696df47db3780a839ebf
 R3
 R4
 R5
@@ -70,13 +94,22 @@ n@_opt2
 R6
 vadder
 Z7 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+<<<<<<< HEAD
 Z8 !s110 1679343141
+=======
+Z8 !s110 1679283471
+>>>>>>> 36c62dc7e4cab9c342c9696df47db3780a839ebf
 !i10b 1
 !s100 Q4md?XDeCMg_<N0[jH7?41
 ITgYA8MG6oSz20W2>U:f<T0
 S1
+<<<<<<< HEAD
 Z9 dC:/Everything/ECEN4243-Labs/lab2/hdl
 Z10 w1679343127
+=======
+Z9 dC:/Users/Admin/Desktop/ecen4243S23-main/ECEN4243-Labs/lab2/hdl
+Z10 w1679283460
+>>>>>>> 36c62dc7e4cab9c342c9696df47db3780a839ebf
 Z11 8riscv_single.sv
 Z12 Friscv_single.sv
 !i122 0
@@ -86,7 +119,11 @@ Z14 OL;L;2021.1;73
 r1
 !s85 0
 31
+<<<<<<< HEAD
 Z15 !s108 1679343141.000000
+=======
+Z15 !s108 1679283471.000000
+>>>>>>> 36c62dc7e4cab9c342c9696df47db3780a839ebf
 Z16 !s107 riscv_single.sv|
 Z17 !s90 -reportprogress|300|riscv_single.sv|
 !i113 0
@@ -432,8 +469,13 @@ vtestbench
 R7
 R8
 !i10b 1
+<<<<<<< HEAD
 !s100 kZ9TDX0ANKDo?N3KHo:_h1
 ImZ`Fl8E=AdJ9TQ4FX=n`71
+=======
+!s100 >nG=YdFa_7^[n^b7]U`Jg2
+IBU?;K=ld89fniNKPDTnnX3
+>>>>>>> 36c62dc7e4cab9c342c9696df47db3780a839ebf
 S1
 R9
 R10

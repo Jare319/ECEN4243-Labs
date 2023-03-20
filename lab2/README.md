@@ -26,7 +26,7 @@ Instructions to Add (16?)
 [ ] lbu ?
 [ ] lb 
 [ ] lh 
-[ ] lhu ?
+[ ] lhu 
 [X] blt
 [ ] bltu ?
 [X] bge ?
