@@ -80,7 +80,8 @@ module riscvsingle (input  logic        clk, reset,
 		    input  logic [31:0] ReadData);
    
    logic 				ALUSrc, RegWrite, Jump, Zero, V, N, C;
-   logic [1:0] 				ResultSrc, ImmSrc;
+   logic [1:0] 				ResultSrc,
+   logic [2:0]        ImmSrc,
    logic [3:0] 				ALUControl;
    
    controller c (Instr[6:0], Instr[14:12], Instr[30], Zero, V, N, C,
@@ -103,7 +104,7 @@ module controller (input  logic [6:0] op,
 		   output logic       MemWrite,
 		   output logic       PCSrc, ALUSrc,
 		   output logic       RegWrite, Jump,
-		   output logic [1:0] ImmSrc,
+		   output logic [2:0] ImmSrc,
 		   output logic [3:0] ALUControl);
    
    logic [1:0] 			      ALUOp;
@@ -132,7 +133,7 @@ module maindec (input  logic [6:0] op,
 		output logic 	   MemWrite,
 		output logic 	   Branch, ALUSrc,
 		output logic 	   RegWrite, Jump,
-		output logic [1:0] ImmSrc,
+		output logic [2:0] ImmSrc,
 		output logic [1:0] ALUOp);
    
    logic [10:0] 		   controls;
@@ -143,13 +144,13 @@ module maindec (input  logic [6:0] op,
    always_comb
      case(op)
        // RegWrite_ImmSrc_ALUSrc_MemWrite_ResultSrc_Branch_ALUOp_Jump
-       7'b0000011: controls = 11'b1_00_1_0_01_0_00_0; // lw
-       7'b0100011: controls = 11'b0_01_1_1_00_0_00_0; // sw
-       7'b0110011: controls = 11'b1_xx_0_0_00_0_10_0; // R–type
-       7'b1100011: controls = 11'b0_10_0_0_00_1_01_0; // beq/bne
-       7'b0010011: controls = 11'b1_00_1_0_00_0_10_0; // I–type ALU
-       7'b1101111: controls = 11'b1_11_0_0_10_0_00_1; // jal
-       7'b0110111: controls = 11'b1_01_1_0_00_0_00_0; // U-type
+       7'b0000011: controls = 11'b1_000_1_0_01_0_00_0; // lw
+       7'b0100011: controls = 11'b0_001_1_1_00_0_00_0; // sw
+       7'b0110011: controls = 11'b1_xxx_0_0_00_0_10_0; // R–type
+       7'b1100011: controls = 11'b0_010_0_0_00_1_01_0; // beq/bne
+       7'b0010011: controls = 11'b1_000_1_0_00_0_10_0; // I–type ALU
+       7'b1101111: controls = 11'b1_011_0_0_10_0_00_1; // jal
+       7'b0110111: controls = 11'b1_100_1_0_00_0_00_0; // U-type
        default: controls = 11'bx_xx_x_x_xx_x_xx_x; // ???
      endcase // case (op)
    
@@ -192,7 +193,7 @@ module datapath (input  logic        clk, reset,
 		 input  logic [1:0]  ResultSrc,
 		 input  logic 	     PCSrc, ALUSrc,
 		 input  logic 	     RegWrite,
-		 input  logic [1:0]  ImmSrc,
+		 input  logic [2:0]  ImmSrc,
 		 input  logic [3:0]  ALUControl,
 		 output logic 	     Zero, V, N, C,
 		 output logic [31:0] PC,
