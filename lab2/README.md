@@ -28,7 +28,7 @@ Instructions to Add (16?)
 [X] bge 
 [X] bgeu 
 [X] jalr 
-[ ] auipc ?
+[ ] auipc x
 [ ] sltiu x
 [X] sltu 
 [X] slli
