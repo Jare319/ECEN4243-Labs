@@ -36,7 +36,7 @@ Instructions to Add (16?)
 [ ] sb
 [ ] sh
 [ ] sltiu ?
-[ ] sltu ?
+[X] sltu 
 [X] slli
 [X] srai 
 

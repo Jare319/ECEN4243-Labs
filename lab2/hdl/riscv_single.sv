@@ -40,7 +40,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../riscvtest/bltu-test.memfile"};
+        memfilename = {"../riscvtest/sltu-test.memfile"};
         $readmemh(memfilename, dut.imem.RAM);
      end
 
@@ -180,6 +180,7 @@ module aludec (input  logic       opb5,
         else
           ALUControl = 4'b1000; // srl, srli
 		    3'b010: ALUControl = 4'b0101; // slt, slti
+        3'b011: ALUControl = 4'b1001; // sltu, sltiu
         3'b100: ALUControl = 4'b0100; // xor, xori
 		    3'b110: ALUControl = 4'b0011; // or, ori
 		    3'b111: ALUControl = 4'b0010; // and, andi
@@ -346,6 +347,7 @@ module alu (input  logic [31:0] a, b,
        4'b0011:  result = a | b;        // or
        4'b0100:  result = a ^ b;        // xor
        4'b0101:  result = sum[31] ^ v;  // slt
+       4'b1001:  result = sum[31] ^ c;  // sltu
        4'b0110:  result = a << b[4:0];  // sll
        4'b0111:  result = a >>> b[4:0]; // sra
        4'b1000:  result = a >> b[4:0];  // srl
