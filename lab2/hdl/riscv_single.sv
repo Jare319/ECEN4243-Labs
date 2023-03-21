@@ -40,7 +40,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../riscvtest/lui-test.memfile"};
+        memfilename = {"../riscvtest/auipc-test.memfile"};
         $readmemh(memfilename, dut.imem.RAM);
      end
 
