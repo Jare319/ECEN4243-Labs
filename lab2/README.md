@@ -21,7 +21,7 @@ Instructions to Add (16?)
 [X] srli
 [X] bne 
 [X] beq 
-[ ] lui ?
+[X] lui 
 [X] sra 
 [ ] lbu ?
 [ ] lb 
