@@ -1,9 +1,10 @@
-# //  ModelSim SE-64 2021.1 Jan 19 2021
+# //  Questa Sim-64
+# //  Version 2021.3_1 linux_x86_64 Aug 15 2021
 # //
 # //  Copyright 1991-2021 Mentor Graphics Corporation
 # //  All Rights Reserved.
 # //
-# //  ModelSim SE-64 and its associated documentation contain trade
+# //  QuestaSim and its associated documentation contain trade
 # //  secrets and commercial or financial information that are the property of
 # //  Mentor Graphics Corporation and are privileged, confidential,
 # //  and exempt from disclosure under the Freedom of Information Act,
@@ -12,8 +13,11 @@
 # //  18 U.S.C. Section 1905.
 # //
 # do riscv_single.do
-# Model Technology ModelSim SE-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
-# Start time: 19:08:06 on Mar 20,2023
+# ** Warning: (vdel-134) Unable to remove locked optimized design "_opt".  Locker is jstine@sakuya.ecen.okstate.edu.
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2021.3_1 Compiler 2021.08 Aug 15 2021
+# Start time: 12:11:04 on Mar 02,2023
 # vlog -reportprogress 300 riscv_single.sv 
 # -- Compiling module testbench
 # -- Compiling module riscvsingle
@@ -36,13 +40,13 @@
 # Top level modules:
 # 	testbench
 # 	flopenr
-# End time: 19:08:06 on Mar 20,2023, Elapsed time: 0:00:00
+# End time: 12:11:04 on Mar 02,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 19:08:06 on Mar 20,2023
+# Start time: 12:11:04 on Mar 02,2023
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
-# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=64, type=RAM at location riscv_single.sv:320
+# ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=256, type=RAM at location riscv_single.sv:299
 # Loading sv_std.std
 # Loading work.testbench(fast)
 # Loading work.top(fast)
@@ -61,20 +65,11 @@
 # Loading work.imem(fast)
 # Loading work.dmem(fast)
 # ** Note: (vsim-8900) Creating design debug database vsim.dbg.
-# ** Error: (vsim-8357) Internal debugDB error id:ct1  ret:1 table context_tbl already exists
-# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
-#           File in use by: jstine  Hostname: sakuya.ecen.okstate.edu  ProcessID: 31237
-#           Attempting to use alternate WLF file "./wlft2zryt0".
-# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlft2zryt0
-# Debug data file does not match loaded design.
-# Debug data file does not match loaded design.
-# ** Error: Could not open the database because of the following problem accessing the required debug information:
-# Debug data file does not match loaded design.
-# Error in macro ./riscv_single.do line 89
-# Could not open the database because of the following problem accessing the required debug information:
-# Debug data file does not match loaded design.
-#     while executing
-# "add schematic -full sim:/testbench/dut/rv32single"
-# End time: 19:08:18 on Mar 20,2023, Elapsed time: 0:00:12
-# Errors: 2, Warnings: 2
+# Simulation succeeded
+# ** Note: $stop    : riscv_single.sv(66)
+#    Time: 195 ns  Iteration: 1  Instance: /testbench
+# Break in Module testbench at riscv_single.sv line 66
+run 20ns
+run 20ns
+# End time: 12:11:38 on Mar 02,2023, Elapsed time: 0:00:34
+# Errors: 0, Warnings: 0

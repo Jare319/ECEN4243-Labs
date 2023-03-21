@@ -1,10 +1,10 @@
--- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2018.1 (win64) Build 2188600 Wed Apr  4 18:40:38 MDT 2018
--- Date        : Wed Feb 13 12:00:19 2019
--- Host        : CEAT-ENDV-PC059 running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Wed Mar  1 14:48:01 2023
+-- Host        : coco running 64-bit Ubuntu 22.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               C:/Users/alexasu/Desktop/lab2/lab2.srcs/sources_1/bd/design_1/ip/design_1_AXI_Converter_0_0/design_1_AXI_Converter_0_0_sim_netlist.vhdl
+--               /home/ross/repos/ELVIS/lab2/lab2.srcs/sources_1/bd/design_1/ip/design_1_AXI_Converter_0_0/design_1_AXI_Converter_0_0_sim_netlist.vhdl
 -- Design      : design_1_AXI_Converter_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -22,9 +22,9 @@ entity design_1_AXI_Converter_0_0_AXI_Converter_v1_0_M00_AXI is
     m00_axi_wlast : out STD_LOGIC;
     m00_axi_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     m00_axi_araddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m00_axi_arvalid : out STD_LOGIC;
-    m00_axi_awvalid : out STD_LOGIC;
-    m00_axi_rready : out STD_LOGIC;
+    axi_arvalid_reg_0 : out STD_LOGIC;
+    axi_awvalid_reg_0 : out STD_LOGIC;
+    axi_rready_reg_0 : out STD_LOGIC;
     m00_axi_wvalid : out STD_LOGIC;
     error : out STD_LOGIC;
     done : out STD_LOGIC;
@@ -51,18 +51,19 @@ end design_1_AXI_Converter_0_0_AXI_Converter_v1_0_M00_AXI;
 architecture STRUCTURE of design_1_AXI_Converter_0_0_AXI_Converter_v1_0_M00_AXI is
   signal ERROR_i_1_n_0 : STD_LOGIC;
   signal ERROR_i_2_n_0 : STD_LOGIC;
-  signal \FSM_sequential_mst_exec_state[0]_i_1_n_0\ : STD_LOGIC;
-  signal \FSM_sequential_mst_exec_state[1]_i_1_n_0\ : STD_LOGIC;
   signal \^m_axi_bready\ : STD_LOGIC;
   signal axi_araddr : STD_LOGIC_VECTOR ( 31 downto 19 );
   signal \axi_araddr[18]_i_1_n_0\ : STD_LOGIC;
   signal axi_arvalid_i_1_n_0 : STD_LOGIC;
+  signal \^axi_arvalid_reg_0\ : STD_LOGIC;
   signal axi_awaddr : STD_LOGIC_VECTOR ( 31 downto 19 );
   signal \axi_awaddr[18]_i_1_n_0\ : STD_LOGIC;
   signal axi_awvalid_i_1_n_0 : STD_LOGIC;
   signal axi_awvalid_i_2_n_0 : STD_LOGIC;
+  signal \^axi_awvalid_reg_0\ : STD_LOGIC;
   signal axi_bready0 : STD_LOGIC;
   signal axi_rready_i_1_n_0 : STD_LOGIC;
+  signal \^axi_rready_reg_0\ : STD_LOGIC;
   signal \axi_wdata[31]_i_1_n_0\ : STD_LOGIC;
   signal axi_wvalid_i_1_n_0 : STD_LOGIC;
   signal burst_read_active : STD_LOGIC;
@@ -94,7 +95,6 @@ architecture STRUCTURE of design_1_AXI_Converter_0_0_AXI_Converter_v1_0_M00_AXI 
   signal \m00_axi_araddr[27]_INST_0_n_1\ : STD_LOGIC;
   signal \m00_axi_araddr[27]_INST_0_n_2\ : STD_LOGIC;
   signal \m00_axi_araddr[27]_INST_0_n_3\ : STD_LOGIC;
-  signal \^m00_axi_arvalid\ : STD_LOGIC;
   signal \m00_axi_awaddr[19]_INST_0_i_1_n_0\ : STD_LOGIC;
   signal \m00_axi_awaddr[19]_INST_0_n_0\ : STD_LOGIC;
   signal \m00_axi_awaddr[19]_INST_0_n_1\ : STD_LOGIC;
@@ -108,13 +108,10 @@ architecture STRUCTURE of design_1_AXI_Converter_0_0_AXI_Converter_v1_0_M00_AXI 
   signal \m00_axi_awaddr[27]_INST_0_n_1\ : STD_LOGIC;
   signal \m00_axi_awaddr[27]_INST_0_n_2\ : STD_LOGIC;
   signal \m00_axi_awaddr[27]_INST_0_n_3\ : STD_LOGIC;
-  signal \^m00_axi_awvalid\ : STD_LOGIC;
-  signal \^m00_axi_rready\ : STD_LOGIC;
   signal \^m00_axi_wlast\ : STD_LOGIC;
   signal \^m00_axi_wvalid\ : STD_LOGIC;
   signal mst_exec_state : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute RTL_KEEP : string;
-  attribute RTL_KEEP of mst_exec_state : signal is "yes";
+  signal \mst_exec_state__0\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal p_6_in : STD_LOGIC;
   signal reads_done : STD_LOGIC;
   signal reads_done_i_1_n_0 : STD_LOGIC;
@@ -130,10 +127,7 @@ architecture STRUCTURE of design_1_AXI_Converter_0_0_AXI_Converter_v1_0_M00_AXI 
   signal \NLW_m00_axi_awaddr[31]_INST_0_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 1 );
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_sequential_mst_exec_state_reg[0]\ : label is "INIT_WRITE:01,INIT_READ:10,IDLE:00";
-  attribute KEEP : string;
-  attribute KEEP of \FSM_sequential_mst_exec_state_reg[0]\ : label is "yes";
   attribute FSM_ENCODED_STATES of \FSM_sequential_mst_exec_state_reg[1]\ : label is "INIT_WRITE:01,INIT_READ:10,IDLE:00";
-  attribute KEEP of \FSM_sequential_mst_exec_state_reg[1]\ : label is "yes";
   attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of axi_bready_i_1 : label is "soft_lutpair1";
   attribute SOFT_HLUTNM of burst_read_active_i_1 : label is "soft_lutpair0";
@@ -141,13 +135,22 @@ architecture STRUCTURE of design_1_AXI_Converter_0_0_AXI_Converter_v1_0_M00_AXI 
   attribute SOFT_HLUTNM of compare_done_i_3 : label is "soft_lutpair2";
   attribute SOFT_HLUTNM of error_reg_i_2 : label is "soft_lutpair0";
   attribute SOFT_HLUTNM of init_txn_ff2_i_1 : label is "soft_lutpair2";
+  attribute ADDER_THRESHOLD : integer;
+  attribute ADDER_THRESHOLD of \m00_axi_araddr[19]_INST_0\ : label is 35;
+  attribute ADDER_THRESHOLD of \m00_axi_araddr[23]_INST_0\ : label is 35;
+  attribute ADDER_THRESHOLD of \m00_axi_araddr[27]_INST_0\ : label is 35;
+  attribute ADDER_THRESHOLD of \m00_axi_araddr[31]_INST_0\ : label is 35;
+  attribute ADDER_THRESHOLD of \m00_axi_awaddr[19]_INST_0\ : label is 35;
+  attribute ADDER_THRESHOLD of \m00_axi_awaddr[23]_INST_0\ : label is 35;
+  attribute ADDER_THRESHOLD of \m00_axi_awaddr[27]_INST_0\ : label is 35;
+  attribute ADDER_THRESHOLD of \m00_axi_awaddr[31]_INST_0\ : label is 35;
 begin
   M_AXI_BREADY <= \^m_axi_bready\;
+  axi_arvalid_reg_0 <= \^axi_arvalid_reg_0\;
+  axi_awvalid_reg_0 <= \^axi_awvalid_reg_0\;
+  axi_rready_reg_0 <= \^axi_rready_reg_0\;
   done <= \^done\;
   error <= \^error\;
-  m00_axi_arvalid <= \^m00_axi_arvalid\;
-  m00_axi_awvalid <= \^m00_axi_awvalid\;
-  m00_axi_rready <= \^m00_axi_rready\;
   m00_axi_wlast <= \^m00_axi_wlast\;
   m00_axi_wvalid <= \^m00_axi_wvalid\;
 ERROR_i_1: unisim.vcomponents.LUT5
@@ -194,7 +197,7 @@ ERROR_reg: unisim.vcomponents.FDRE
       I3 => mst_exec_state(0),
       I4 => writes_done,
       I5 => mst_exec_state(1),
-      O => \FSM_sequential_mst_exec_state[0]_i_1_n_0\
+      O => \mst_exec_state__0\(0)
     );
 \FSM_sequential_mst_exec_state[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
@@ -207,13 +210,13 @@ ERROR_reg: unisim.vcomponents.FDRE
       I3 => mst_exec_state(1),
       I4 => reads_done,
       I5 => mst_exec_state(0),
-      O => \FSM_sequential_mst_exec_state[1]_i_1_n_0\
+      O => \mst_exec_state__0\(1)
     );
 \FSM_sequential_mst_exec_state_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => m00_axi_aclk,
       CE => '1',
-      D => \FSM_sequential_mst_exec_state[0]_i_1_n_0\,
+      D => \mst_exec_state__0\(0),
       Q => mst_exec_state(0),
       R => compare_done_i_1_n_0
     );
@@ -221,7 +224,7 @@ ERROR_reg: unisim.vcomponents.FDRE
      port map (
       C => m00_axi_aclk,
       CE => '1',
-      D => \FSM_sequential_mst_exec_state[1]_i_1_n_0\,
+      D => \mst_exec_state__0\(1),
       Q => mst_exec_state(1),
       R => compare_done_i_1_n_0
     );
@@ -234,7 +237,7 @@ ERROR_reg: unisim.vcomponents.FDRE
       I1 => init_txn_ff,
       I2 => init_txn_ff2,
       I3 => m00_axi_arready,
-      I4 => \^m00_axi_arvalid\,
+      I4 => \^axi_arvalid_reg_0\,
       O => \axi_araddr[18]_i_1_n_0\
     );
 \axi_araddr_reg[0]\: unisim.vcomponents.FDRE
@@ -500,7 +503,7 @@ axi_arvalid_i_1: unisim.vcomponents.LUT3
         port map (
       I0 => start_single_burst_read_reg_n_0,
       I1 => m00_axi_arready,
-      I2 => \^m00_axi_arvalid\,
+      I2 => \^axi_arvalid_reg_0\,
       O => axi_arvalid_i_1_n_0
     );
 axi_arvalid_reg: unisim.vcomponents.FDRE
@@ -508,7 +511,7 @@ axi_arvalid_reg: unisim.vcomponents.FDRE
       C => m00_axi_aclk,
       CE => '1',
       D => axi_arvalid_i_1_n_0,
-      Q => \^m00_axi_arvalid\,
+      Q => \^axi_arvalid_reg_0\,
       R => axi_awvalid_i_1_n_0
     );
 \axi_awaddr[18]_i_1\: unisim.vcomponents.LUT5
@@ -520,7 +523,7 @@ axi_arvalid_reg: unisim.vcomponents.FDRE
       I1 => init_txn_ff,
       I2 => init_txn_ff2,
       I3 => m00_axi_awready,
-      I4 => \^m00_axi_awvalid\,
+      I4 => \^axi_awvalid_reg_0\,
       O => \axi_awaddr[18]_i_1_n_0\
     );
 \axi_awaddr_reg[0]\: unisim.vcomponents.FDRE
@@ -796,7 +799,7 @@ axi_awvalid_i_2: unisim.vcomponents.LUT3
         port map (
       I0 => start_single_burst_write_reg_n_0,
       I1 => m00_axi_awready,
-      I2 => \^m00_axi_awvalid\,
+      I2 => \^axi_awvalid_reg_0\,
       O => axi_awvalid_i_2_n_0
     );
 axi_awvalid_reg: unisim.vcomponents.FDRE
@@ -804,7 +807,7 @@ axi_awvalid_reg: unisim.vcomponents.FDRE
       C => m00_axi_aclk,
       CE => '1',
       D => axi_awvalid_i_2_n_0,
-      Q => \^m00_axi_awvalid\,
+      Q => \^axi_awvalid_reg_0\,
       R => axi_awvalid_i_1_n_0
     );
 axi_bready_i_1: unisim.vcomponents.LUT2
@@ -830,7 +833,7 @@ axi_rready_i_1: unisim.vcomponents.LUT6
     )
         port map (
       I0 => m00_axi_rvalid,
-      I1 => \^m00_axi_rready\,
+      I1 => \^axi_rready_reg_0\,
       I2 => m00_axi_rlast,
       I3 => init_txn_ff2,
       I4 => init_txn_ff,
@@ -842,7 +845,7 @@ axi_rready_reg: unisim.vcomponents.FDRE
       C => m00_axi_aclk,
       CE => '1',
       D => axi_rready_i_1_n_0,
-      Q => \^m00_axi_rready\,
+      Q => \^axi_rready_reg_0\,
       R => '0'
     );
 \axi_wdata[31]_i_1\: unisim.vcomponents.LUT5
@@ -1147,7 +1150,7 @@ burst_read_active_i_1: unisim.vcomponents.LUT5
         port map (
       I0 => start_single_burst_read_reg_n_0,
       I1 => m00_axi_rlast,
-      I2 => \^m00_axi_rready\,
+      I2 => \^axi_rready_reg_0\,
       I3 => m00_axi_rvalid,
       I4 => burst_read_active,
       O => burst_read_active_i_1_n_0
@@ -1226,7 +1229,7 @@ compare_done_reg: unisim.vcomponents.FDSE
       I1 => init_txn_ff,
       I2 => init_txn_ff2,
       I3 => m00_axi_rvalid,
-      I4 => \^m00_axi_rready\,
+      I4 => \^axi_rready_reg_0\,
       O => \data_out[31]_i_1_n_0\
     );
 \data_out_reg[0]\: unisim.vcomponents.FDRE
@@ -1503,7 +1506,7 @@ error_reg_i_2: unisim.vcomponents.LUT2
       INIT => X"8"
     )
         port map (
-      I0 => \^m00_axi_rready\,
+      I0 => \^axi_rready_reg_0\,
       I1 => m00_axi_rvalid,
       O => p_6_in
     );
@@ -1679,7 +1682,7 @@ reads_done_i_1: unisim.vcomponents.LUT3
     )
         port map (
       I0 => m00_axi_rvalid,
-      I1 => \^m00_axi_rready\,
+      I1 => \^axi_rready_reg_0\,
       I2 => reads_done,
       O => reads_done_i_1_n_0
     );
@@ -1697,7 +1700,7 @@ start_single_burst_read_i_1: unisim.vcomponents.LUT6
     )
         port map (
       I0 => burst_read_active,
-      I1 => \^m00_axi_arvalid\,
+      I1 => \^axi_arvalid_reg_0\,
       I2 => mst_exec_state(0),
       I3 => mst_exec_state(1),
       I4 => reads_done,
@@ -1717,7 +1720,7 @@ start_single_burst_write_i_1: unisim.vcomponents.LUT6
       INIT => X"FFFFF0FF00000100"
     )
         port map (
-      I0 => \^m00_axi_awvalid\,
+      I0 => \^axi_awvalid_reg_0\,
       I1 => burst_write_active,
       I2 => mst_exec_state(1),
       I3 => mst_exec_state(0),
@@ -1764,9 +1767,9 @@ entity design_1_AXI_Converter_0_0_AXI_Converter_v1_0 is
     m00_axi_wlast : out STD_LOGIC;
     m00_axi_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     m00_axi_araddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m00_axi_arvalid : out STD_LOGIC;
-    m00_axi_awvalid : out STD_LOGIC;
-    m00_axi_rready : out STD_LOGIC;
+    axi_arvalid_reg : out STD_LOGIC;
+    axi_awvalid_reg : out STD_LOGIC;
+    axi_rready_reg : out STD_LOGIC;
     m00_axi_wvalid : out STD_LOGIC;
     error : out STD_LOGIC;
     done : out STD_LOGIC;
@@ -1796,6 +1799,9 @@ AXI_Converter_v1_0_M00_AXI_inst: entity work.design_1_AXI_Converter_0_0_AXI_Conv
      port map (
       M_AXI_BREADY => M_AXI_BREADY,
       address(31 downto 0) => address(31 downto 0),
+      axi_arvalid_reg_0 => axi_arvalid_reg,
+      axi_awvalid_reg_0 => axi_awvalid_reg,
+      axi_rready_reg_0 => axi_rready_reg,
       data_in(31 downto 0) => data_in(31 downto 0),
       data_out(31 downto 0) => data_out(31 downto 0),
       done => done,
@@ -1804,15 +1810,12 @@ AXI_Converter_v1_0_M00_AXI_inst: entity work.design_1_AXI_Converter_0_0_AXI_Conv
       m00_axi_araddr(31 downto 0) => m00_axi_araddr(31 downto 0),
       m00_axi_aresetn => m00_axi_aresetn,
       m00_axi_arready => m00_axi_arready,
-      m00_axi_arvalid => m00_axi_arvalid,
       m00_axi_awaddr(31 downto 0) => m00_axi_awaddr(31 downto 0),
       m00_axi_awready => m00_axi_awready,
-      m00_axi_awvalid => m00_axi_awvalid,
       m00_axi_bresp(0) => m00_axi_bresp(0),
       m00_axi_bvalid => m00_axi_bvalid,
       m00_axi_rdata(31 downto 0) => m00_axi_rdata(31 downto 0),
       m00_axi_rlast => m00_axi_rlast,
-      m00_axi_rready => m00_axi_rready,
       m00_axi_rresp(0) => m00_axi_rresp(0),
       m00_axi_rvalid => m00_axi_rvalid,
       m00_axi_wdata(31 downto 0) => m00_axi_wdata(31 downto 0),
@@ -1889,7 +1892,7 @@ entity design_1_AXI_Converter_0_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of design_1_AXI_Converter_0_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of design_1_AXI_Converter_0_0 : entity is "AXI_Converter_v1_0,Vivado 2018.1";
+  attribute X_CORE_INFO of design_1_AXI_Converter_0_0 : entity is "AXI_Converter_v1_0,Vivado 2019.1";
 end design_1_AXI_Converter_0_0;
 
 architecture STRUCTURE of design_1_AXI_Converter_0_0 is
@@ -1898,9 +1901,9 @@ architecture STRUCTURE of design_1_AXI_Converter_0_0 is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of m00_axi_aclk : signal is "xilinx.com:signal:clock:1.0 M00_AXI_CLK CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of m00_axi_aclk : signal is "XIL_INTERFACENAME M00_AXI_CLK, ASSOCIATED_BUSIF M00_AXI, ASSOCIATED_RESET m00_axi_aresetn, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0";
+  attribute X_INTERFACE_PARAMETER of m00_axi_aclk : signal is "XIL_INTERFACENAME M00_AXI_CLK, ASSOCIATED_BUSIF M00_AXI, ASSOCIATED_RESET m00_axi_aresetn, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of m00_axi_aresetn : signal is "xilinx.com:signal:reset:1.0 M00_AXI_RST RST";
-  attribute X_INTERFACE_PARAMETER of m00_axi_aresetn : signal is "XIL_INTERFACENAME M00_AXI_RST, POLARITY ACTIVE_LOW";
+  attribute X_INTERFACE_PARAMETER of m00_axi_aresetn : signal is "XIL_INTERFACENAME M00_AXI_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of m00_axi_arlock : signal is "xilinx.com:interface:aximm:1.0 M00_AXI ARLOCK";
   attribute X_INTERFACE_INFO of m00_axi_arready : signal is "xilinx.com:interface:aximm:1.0 M00_AXI ARREADY";
   attribute X_INTERFACE_INFO of m00_axi_arvalid : signal is "xilinx.com:interface:aximm:1.0 M00_AXI ARVALID";
@@ -1911,7 +1914,7 @@ architecture STRUCTURE of design_1_AXI_Converter_0_0 is
   attribute X_INTERFACE_INFO of m00_axi_bvalid : signal is "xilinx.com:interface:aximm:1.0 M00_AXI BVALID";
   attribute X_INTERFACE_INFO of m00_axi_rlast : signal is "xilinx.com:interface:aximm:1.0 M00_AXI RLAST";
   attribute X_INTERFACE_INFO of m00_axi_rready : signal is "xilinx.com:interface:aximm:1.0 M00_AXI RREADY";
-  attribute X_INTERFACE_PARAMETER of m00_axi_rready : signal is "XIL_INTERFACENAME M00_AXI, WIZ_DATA_WIDTH 32, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4, FREQ_HZ 50000000, ID_WIDTH 1, ADDR_WIDTH 32, AWUSER_WIDTH 1, ARUSER_WIDTH 1, WUSER_WIDTH 32, RUSER_WIDTH 32, BUSER_WIDTH 1, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 256, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
+  attribute X_INTERFACE_PARAMETER of m00_axi_rready : signal is "XIL_INTERFACENAME M00_AXI, WIZ_DATA_WIDTH 32, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4, FREQ_HZ 50000000, ID_WIDTH 1, ADDR_WIDTH 32, AWUSER_WIDTH 1, ARUSER_WIDTH 1, WUSER_WIDTH 32, RUSER_WIDTH 32, BUSER_WIDTH 1, READ_WRITE_MODE READ_WRITE, HAS_BURST 1, HAS_LOCK 1, HAS_PROT 1, HAS_CACHE 1, HAS_QOS 1, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 256, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of m00_axi_rvalid : signal is "xilinx.com:interface:aximm:1.0 M00_AXI RVALID";
   attribute X_INTERFACE_INFO of m00_axi_wlast : signal is "xilinx.com:interface:aximm:1.0 M00_AXI WLAST";
   attribute X_INTERFACE_INFO of m00_axi_wready : signal is "xilinx.com:interface:aximm:1.0 M00_AXI WREADY";
@@ -2035,7 +2038,7 @@ begin
   m00_axi_wuser(2) <= \<const0>\;
   m00_axi_wuser(1) <= \<const0>\;
   m00_axi_wuser(0) <= \<const0>\;
-  txn_pulse_passthrough <= 'Z';
+  txn_pulse_passthrough <= \<const0>\;
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
@@ -2048,6 +2051,9 @@ inst: entity work.design_1_AXI_Converter_0_0_AXI_Converter_v1_0
      port map (
       M_AXI_BREADY => m00_axi_bready,
       address(31 downto 0) => address(31 downto 0),
+      axi_arvalid_reg => m00_axi_arvalid,
+      axi_awvalid_reg => m00_axi_awvalid,
+      axi_rready_reg => m00_axi_rready,
       data_in(31 downto 0) => data_in(31 downto 0),
       data_out(31 downto 0) => data_out(31 downto 0),
       done => done,
@@ -2056,15 +2062,12 @@ inst: entity work.design_1_AXI_Converter_0_0_AXI_Converter_v1_0
       m00_axi_araddr(31 downto 0) => m00_axi_araddr(31 downto 0),
       m00_axi_aresetn => m00_axi_aresetn,
       m00_axi_arready => m00_axi_arready,
-      m00_axi_arvalid => m00_axi_arvalid,
       m00_axi_awaddr(31 downto 0) => m00_axi_awaddr(31 downto 0),
       m00_axi_awready => m00_axi_awready,
-      m00_axi_awvalid => m00_axi_awvalid,
       m00_axi_bresp(0) => m00_axi_bresp(1),
       m00_axi_bvalid => m00_axi_bvalid,
       m00_axi_rdata(31 downto 0) => m00_axi_rdata(31 downto 0),
       m00_axi_rlast => m00_axi_rlast,
-      m00_axi_rready => m00_axi_rready,
       m00_axi_rresp(0) => m00_axi_rresp(1),
       m00_axi_rvalid => m00_axi_rvalid,
       m00_axi_wdata(31 downto 0) => m00_axi_wdata(31 downto 0),

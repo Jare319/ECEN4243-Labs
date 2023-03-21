@@ -1,4 +1,4 @@
-// (c) Copyright 1995-2019 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2023 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -52,6 +52,7 @@
 
 `timescale 1ns/1ps
 
+(* IP_DEFINITION_SOURCE = "module_ref" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_top_0_0 (
   clk,
@@ -61,13 +62,13 @@ module design_1_top_0_0 (
   writeDataM,
   addressM,
   DRW,
-  start
+  AXIStart
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET reset, FREQ_HZ 50000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 reset RST" *)
 input wire reset;
 input wire doneM;
@@ -75,7 +76,7 @@ input wire [31 : 0] readDataM;
 output wire [31 : 0] writeDataM;
 output wire [31 : 0] addressM;
 output wire DRW;
-output wire start;
+output wire AXIStart;
 
   top inst (
     .clk(clk),
@@ -85,6 +86,6 @@ output wire start;
     .writeDataM(writeDataM),
     .addressM(addressM),
     .DRW(DRW),
-    .start(start)
+    .AXIStart(AXIStart)
   );
 endmodule
