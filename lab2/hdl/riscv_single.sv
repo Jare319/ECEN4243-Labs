@@ -40,7 +40,7 @@ module testbench();
    initial
      begin
 	string memfilename;
-        memfilename = {"../riscvtest/beq-test.memfile"};
+        memfilename = {"../riscvtest/bltu-test.memfile"};
         $readmemh(memfilename, dut.imem.RAM);
      end
 
@@ -118,10 +118,10 @@ module controller (input  logic [6:0] op,
     case(funct3)
       3'b000: Flags = (Zero ^ funct3[0]) | Jump; // BEQ
       3'b001: Flags = (Zero ^ funct3[0]) | Jump; // BNE
-      3'b100: Flags = N ^ V;
-      3'b101: Flags = ~(N ^ V);
-      3'b110: Flags =  ~C;
-      3'b111: Flags = C;
+      3'b100: Flags = N ^ V;                     // BLT
+      3'b101: Flags = ~(N ^ V);                  // BGE
+      3'b110: Flags =  ~C;                       // BLTU
+      3'b111: Flags = C;                         // BGEU
       default: Flags = 1'b0;
     endcase
     assign PCSrc = Branch & Flags;
@@ -136,7 +136,7 @@ module maindec (input  logic [6:0] op,
 		output logic [2:0] ImmSrc,
 		output logic [1:0] ALUOp);
    
-   logic [10:0] 		   controls;
+   logic [11:0] 		   controls;
    
    assign {RegWrite, ImmSrc, ALUSrc, MemWrite,
 	   ResultSrc, Branch, ALUOp, Jump} = controls;
