@@ -28,14 +28,14 @@ Instructions to Add (16?)
 [ ] lh 
 [ ] lhu 
 [X] blt
-[ ] bltu ?
+[ ] bltu x
 [X] bge 
 [X] bgeu 
 [X] jalr 
 [ ] auipc ?
 [ ] sb
 [ ] sh
-[ ] sltiu ?
+[ ] sltiu x
 [X] sltu 
 [X] slli
 [X] srai 
