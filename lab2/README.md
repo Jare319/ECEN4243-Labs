@@ -23,24 +23,22 @@ Instructions to Add (16?)
 [X] beq 
 [X] lui 
 [X] sra 
-[ ] lbu ?
-[ ] lb 
-[ ] lh 
-[ ] lhu 
 [X] blt
 [ ] bltu x
 [X] bge 
 [X] bgeu 
 [X] jalr 
 [ ] auipc ?
-[ ] sb
-[ ] sh
 [ ] sltiu x
 [X] sltu 
 [X] slli
 [X] srai 
 
-
-
+[ ] lbu 
+[ ] lb 
+[ ] lh 
+[ ] lhu 
+[ ] sb
+[ ] sh
 
 
