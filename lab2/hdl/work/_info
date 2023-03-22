@@ -13,10 +13,17 @@ Z0 dC:/Everything/ECEN4243-Labs/lab2/hdl
 T_opt
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 !s110 1679450052
 VWi:3noil62APP1Ogc33@31
 04 9 4 work testbench fast 0
 =1-d83bbf62bb5f-641a5fc4-91-46d4
+=======
+!s110 1679449965
+VS0?lSReUCzJil9W14^JVe2
+04 9 4 work testbench fast 0
+=1-f01faf1f2814-641a5f6d-97-429c
+>>>>>>> 5831960f0387fb9dc579659fc08aab67d9528052
 =======
 !s110 1679449965
 VS0?lSReUCzJil9W14^JVe2
@@ -38,7 +45,11 @@ vadder
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Z3 !s110 1679450051
+=======
+Z3 !s110 1679449964
+>>>>>>> 5831960f0387fb9dc579659fc08aab67d9528052
 =======
 Z3 !s110 1679449964
 >>>>>>> 5831960f0387fb9dc579659fc08aab67d9528052
@@ -52,7 +63,11 @@ S1
 R0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Z4 w1679450008
+=======
+Z4 w1679449940
+>>>>>>> 5831960f0387fb9dc579659fc08aab67d9528052
 =======
 Z4 w1679449940
 >>>>>>> 5831960f0387fb9dc579659fc08aab67d9528052
@@ -70,7 +85,11 @@ r1
 31
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 Z9 !s108 1679450051.000000
+=======
+Z9 !s108 1679449964.000000
+>>>>>>> 5831960f0387fb9dc579659fc08aab67d9528052
 =======
 Z9 !s108 1679449964.000000
 >>>>>>> 5831960f0387fb9dc579659fc08aab67d9528052
@@ -88,8 +107,13 @@ R3
 !i10b 1
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 !s100 _=^Z60JagChkXIdD5^<oW2
 Im9=2eNemk:an`Ym3CXHa72
+=======
+!s100 <7YRb2^RB@W;_DEnM0VzJ2
+I2@mSJaV]M7TI]dZbC;6`f3
+>>>>>>> 5831960f0387fb9dc579659fc08aab67d9528052
 =======
 !s100 <7YRb2^RB@W;_DEnM0VzJ2
 I2@mSJaV]M7TI]dZbC;6`f3

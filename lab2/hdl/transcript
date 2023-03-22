@@ -76,3 +76,5 @@
 # Debug data file does not match loaded design.
 #     while executing
 # "add schematic -full sim:/testbench/dut/rv32single"
+# End time: 21:16:24 on Mar 21,2023, Elapsed time: 0:22:13
+# Errors: 2, Warnings: 2
