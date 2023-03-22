@@ -119,8 +119,8 @@ module controller (input  logic [6:0] op,
       3'b000: Flags = (Zero ^ funct3[0]) | Jump; // BEQ
       3'b001: Flags = (Zero ^ funct3[0]) | Jump; // BNE
       3'b100: Flags = N ^ V;                     // BLT
-      3'b101: Flags = !(N ^ V);                  // BGE
-      3'b110: Flags = !C;                        // BLTU
+      3'b101: Flags = ~(N ^ V);                  // BGE
+      3'b110: Flags = ~C;                        // BLTU
       3'b111: Flags = C;                         // BGEU
       default: Flags = 1'b0;
     endcase
@@ -335,10 +335,10 @@ module alu (input  logic [31:0] a, b,
    logic [32:0] 	       condinvb, sum;
    logic 		       isAddSub;       // true when is add or subtract operation
 
-   assign condinvb = alucontrol[0] ? !b : b;
+   assign condinvb = alucontrol[0] ? ~b : b;
    assign sum = a + condinvb + alucontrol[0];
-   assign isAddSub = !alucontrol[2] & !alucontrol[1] |
-                     !alucontrol[1] & alucontrol[0];   
+   assign isAddSub = ~alucontrol[2] & ~alucontrol[1] |
+                     ~alucontrol[1] & alucontrol[0];  
 
    always_comb
      case (alucontrol)
@@ -357,7 +357,7 @@ module alu (input  logic [31:0] a, b,
      endcase
 
    assign zero = (result == 32'b0);
-   assign v = !(alucontrol[0] ^ a[31] ^ b[31]) & (a[31] ^ sum[31]) & isAddSub;
+   assign v = ~(alucontrol[0] ^ a[31] ^ b[31]) & (a[31] ^ sum[31]) & isAddSub;
    assign n = result[31];
    assign c = sum[32];
    
