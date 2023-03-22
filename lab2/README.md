@@ -20,7 +20,7 @@ Instructions to Add (16?)
 [X] srl
 [X] srli
 [X] bne 
-[ ] beq x
+[X] beq
 [X] lui 
 [X] sra 
 [X] blt

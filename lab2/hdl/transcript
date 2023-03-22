@@ -13,7 +13,7 @@
 # //
 # do riscv_single.do
 # Model Technology ModelSim SE-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
-# Start time: 18:50:15 on Mar 21,2023
+# Start time: 20:54:11 on Mar 21,2023
 # vlog -reportprogress 300 riscv_single.sv 
 # -- Compiling module testbench
 # -- Compiling module riscvsingle
@@ -36,10 +36,10 @@
 # Top level modules:
 # 	testbench
 # 	flopenr
-# End time: 18:50:15 on Mar 21,2023, Elapsed time: 0:00:00
+# End time: 20:54:11 on Mar 21,2023, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -debugdb -voptargs="+acc" work.testbench 
-# Start time: 18:50:15 on Mar 21,2023
+# Start time: 20:54:11 on Mar 21,2023
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vsim-8611) Generating debug db.
 # ** Note: (vopt-4301) Memory core inferred for signal 'RAM' width=32, depth=64, type=RAM at location riscv_single.sv:322
@@ -64,9 +64,9 @@
 # ** Error: (vsim-8357) Internal debugDB error id:ct1  ret:1 table context_tbl already exists
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
 #           File in use by: jstine  Hostname: sakuya.ecen.okstate.edu  ProcessID: 31237
-#           Attempting to use alternate WLF file "./wlftsrkq9k".
+#           Attempting to use alternate WLF file "./wlftwsawt7".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
-#           Using alternate file: ./wlftsrkq9k
+#           Using alternate file: ./wlftwsawt7
 # Debug data file does not match loaded design.
 # Debug data file does not match loaded design.
 # ** Error: Could not open the database because of the following problem accessing the required debug information:
@@ -76,5 +76,3 @@
 # Debug data file does not match loaded design.
 #     while executing
 # "add schematic -full sim:/testbench/dut/rv32single"
-# End time: 18:51:37 on Mar 21,2023, Elapsed time: 0:01:22
-# Errors: 2, Warnings: 2

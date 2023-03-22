@@ -9,12 +9,12 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/Admin/Desktop/ecen4243S23-main/ECEN4243-Labs/lab2/hdl
+Z0 dC:/Everything/ECEN4243-Labs/lab2/hdl
 T_opt
-!s110 1679442616
-Vf4299NoI_XDFdc]`MVAN10
+!s110 1679450052
+VWi:3noil62APP1Ogc33@31
 04 9 4 work testbench fast 0
-=1-f01faf1f2814-641a42b8-eb-3248
+=1-d83bbf62bb5f-641a5fc4-91-46d4
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work -debugdb +acc
 Z1 tCvgOpt 0
@@ -22,13 +22,13 @@ n@_opt
 OL;O;2021.1;73
 vadder
 Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z3 !s110 1679442615
+Z3 !s110 1679450051
 !i10b 1
 !s100 TEo^F[GzVQoORe6@nRlg`1
 IgflY_nMKl^@8M?WM_k@Ti1
 S1
 R0
-Z4 w1679442605
+Z4 w1679450008
 Z5 8riscv_single.sv
 Z6 Friscv_single.sv
 !i122 0
@@ -38,7 +38,7 @@ Z8 OL;L;2021.1;73
 r1
 !s85 0
 31
-Z9 !s108 1679442615.000000
+Z9 !s108 1679450051.000000
 Z10 !s107 riscv_single.sv|
 Z11 !s90 -reportprogress|300|riscv_single.sv|
 !i113 0
@@ -48,15 +48,15 @@ valu
 R2
 R3
 !i10b 1
-!s100 <dITBC9i_Tl;D2HoM@]9G0
-IV9:zbVm2B]^mL=dVcoPI72
+!s100 _=^Z60JagChkXIdD5^<oW2
+Im9=2eNemk:an`Ym3CXHa72
 S1
 R0
 R4
 R5
 R6
 !i122 0
-L0 330 35
+L0 330 36
 R7
 R8
 r1
@@ -336,15 +336,15 @@ vregfile
 R2
 R3
 !i10b 1
-!s100 3nLSRXkBnk^9oo:BOWXf^2
-InbNbbcJ]3eBbgdG<BIHmG2
+!s100 lB^ES^4VP_Cojh^kcEe`a2
+IX<`K<_ffR8AE<TV_VO3Ga0
 S1
 R0
 R4
 R5
 R6
 !i122 0
-L0 366 20
+L0 367 20
 R7
 R8
 r1
@@ -384,8 +384,8 @@ vtestbench
 R2
 R3
 !i10b 1
-!s100 2Z9XF;bhbjmU>3UFJF=CX3
-IA]d6^8iKdHH1om9GU2>ha1
+!s100 >nG=YdFa_7^[n^b7]U`Jg2
+IBU?;K=ld89fniNKPDTnnX3
 S1
 R0
 R4
