@@ -24,16 +24,17 @@ Instructions to Add (16?)
 [X] lui 
 [X] sra 
 [X] blt
-[ ] bltu x
+[X] bltu 
 [X] bge 
-[ ] bgeu x
+[X] bgeu
 [X] jalr 
 [X] auipc 
-[ ] sltiu x
-[ ] sltu x
+[X] sltiu 
+[X] sltu
 [X] slli
 [X] srai 
-
+Yipee
+[ ] riscvtest
 [ ] lbu 
 [ ] lb 
 [ ] lh 
