@@ -30,7 +30,7 @@ Instructions to Add (16?)
 [X] jalr 
 [X] auipc 
 [ ] sltiu x
-[X] sltu 
+[ ] sltu x
 [X] slli
 [X] srai 
 
