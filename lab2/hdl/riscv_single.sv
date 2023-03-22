@@ -339,11 +339,7 @@ module alu (input  logic [31:0] a, b,
    assign condinvb = alucontrol[0] ? ~b : b;
    assign sum = a + condinvb + alucontrol[0];
    assign isAddSub = ~alucontrol[2] & ~alucontrol[1] |
-<<<<<<< HEAD
-                     ~alucontrol[1] & alucontrol[0];   
-=======
                      ~alucontrol[1] & alucontrol[0];  
->>>>>>> 5831960f0387fb9dc579659fc08aab67d9528052
 
    always_comb
      case (alucontrol)
